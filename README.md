@@ -2,6 +2,8 @@
 
 A dynamic, searchable website version of the **ORCHID Newsletter (Issue No. 27, September 2026)**,
 published by the Office of Research & Innovation (ORI), M.S. Ramaiah University of Applied Sciences.
+Built from the original newsletter PPTX supplied by ORI, with all grant details and hyperlinks
+carried over.
 
 Built as a dependency-free static site (vanilla HTML/CSS/JS) so it deploys instantly to
 **Cloudflare Workers** using native static assets — no framework or build step required.
