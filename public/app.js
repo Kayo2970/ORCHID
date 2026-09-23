@@ -51,6 +51,15 @@
 
   const CATEGORY_LABEL = { national:"National", international:"International", fellowship:"Fellowship" };
 
+  function agencyBadgeHTML(g, extraClass){
+    const cls = extraClass ? `agency-logo ${extraClass}` : "agency-logo";
+    if(g.logo){
+      return `<span class="${cls}"><img src="${g.logo}" alt="${g.agency} logo" loading="lazy"></span>`;
+    }
+    const avatarCls = extraClass ? `agency-avatar ${extraClass}` : "agency-avatar";
+    return `<span class="${avatarCls}">${initials(g.agency)}</span>`;
+  }
+
   /* ---------------- HERO STATS ---------------- */
   function renderHeroStats(){
     const national = GRANTS.filter(g=>g.category==="national").length;
@@ -192,7 +201,7 @@
       <article class="grant-card" data-id="${g.id}" tabindex="0">
         <div class="grant-card-top">
           <span class="grant-agency-chip">
-            <span class="agency-avatar">${initials(g.agency)}</span>
+            ${agencyBadgeHTML(g)}
             ${g.agency}
           </span>
         </div>
@@ -243,9 +252,14 @@
       deadlineLabel = dl < 0 ? `Closed on ${fmtDate(g.deadline)}` : `${dl} day${dl===1?"":"s"} left &middot; closes ${fmtDate(g.deadline)}`;
     }
     $("#modalContent").innerHTML = `
-      <div class="modal-cat">${CATEGORY_LABEL[g.category]}</div>
-      <h3 class="modal-title">${g.title}</h3>
-      <p class="modal-agency">${g.agency}</p>
+      <div class="modal-header">
+        ${agencyBadgeHTML(g, "lg")}
+        <div class="modal-header-text">
+          <div class="modal-cat">${CATEGORY_LABEL[g.category]}</div>
+          <h3 class="modal-title">${g.title}</h3>
+          <p class="modal-agency">${g.agency}</p>
+        </div>
+      </div>
       <div class="modal-block">
         <h4>Overview</h4>
         <p>${g.summary}</p>
