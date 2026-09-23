@@ -325,6 +325,8 @@
     clearBtn.addEventListener("click", ()=>{
       input.value = ""; activeQuery=""; clearBtn.hidden = true; applyFilters(); input.focus();
     });
+    // Fallback pills (rendered only inside <noscript>, i.e. when the
+    // RubberSegment React island can't mount) still work if present.
     $$(".pill", $("#filterPills")).forEach(pill=>{
       pill.addEventListener("click", ()=>{
         $$(".pill", $("#filterPills")).forEach(p=>p.classList.remove("active"));
@@ -333,6 +335,11 @@
         applyFilters();
       });
     });
+    window.ORCHID = window.ORCHID || {};
+    window.ORCHID.setFilter = filterValue => {
+      activeFilter = filterValue;
+      applyFilters();
+    };
     applyFilters();
   }
 

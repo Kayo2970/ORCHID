@@ -9,6 +9,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "react/jsx-dev-runtime": "https://esm.sh/react@18.3.1/jsx-dev-runtime",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client"
+  }
+}
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,6 +29,13 @@
   <span class="orb orb-a"></span>
   <span class="orb orb-b"></span>
   <span class="orb orb-c"></span>
+  <span class="orb orb-d"></span>
+  <span class="light-speck s1"></span>
+  <span class="light-speck s2"></span>
+  <span class="light-speck s3"></span>
+  <span class="light-speck s4"></span>
+  <span class="light-speck s5"></span>
+  <span class="light-speck s6"></span>
 </div>
 
 <div class="progress-bar" id="scrollProgress" aria-hidden="true"></div>
@@ -57,7 +76,7 @@
         <span class="hero-word">ORCHID</span>
         <span class="hero-sub-title">Grants &amp; Fellowships Newsletter</span>
       </h1>
-      <p class="hero-tagline reveal">Research &nbsp;•&nbsp; Innovation &nbsp;•&nbsp; Collaboration &nbsp;•&nbsp; Impact</p>
+      <div class="hero-tagline reveal" id="heroTaglineMount">Research &nbsp;•&nbsp; Innovation &nbsp;•&nbsp; Collaboration &nbsp;•&nbsp; Impact</div>
       <p class="hero-desc reveal">
         A living, searchable guide to national &amp; international research grants, fellowships and
         rolling calls curated by the Office of Research &amp; Innovation, M.S. Ramaiah University of
@@ -68,8 +87,11 @@
         <a href="#national" class="btn btn-ghost">Browse All Grants</a>
       </div>
 
-      <div class="hero-stats reveal" id="heroStats">
-        <!-- injected by app.js -->
+      <div class="reveal glow-frame">
+        <div class="glow-decor" id="heroStatsGlow"></div>
+        <div class="hero-stats glass" id="heroStats">
+          <!-- injected by app.js -->
+        </div>
       </div>
     </div>
     <div class="hero-scroll-cue" aria-hidden="true"><span></span></div>
@@ -82,16 +104,19 @@
         <span class="eyebrow">From the Desk of ORI</span>
         <h2>News from the ORI Desk</h2>
       </div>
-      <div class="letter-card reveal">
-        <div class="letter-quote-mark">&#8220;</div>
-        <p class="letter-greeting" id="letterGreeting"></p>
-        <div id="letterBody" class="letter-body"></div>
-        <div class="letter-contact">
-          <div>
-            <span class="contact-label">For queries or to share research opportunities</span>
-            <a id="letterEmail" class="contact-email" href="#"></a>
+      <div class="reveal glow-frame">
+        <div class="glow-decor" id="letterGlowMount"></div>
+        <div class="letter-card glass">
+          <div class="letter-quote-mark">&#8220;</div>
+          <p class="letter-greeting" id="letterGreeting"></p>
+          <div id="letterBody" class="letter-body"></div>
+          <div class="letter-contact">
+            <div>
+              <span class="contact-label">For queries or to share research opportunities</span>
+              <a id="letterEmail" class="contact-email" href="#"></a>
+            </div>
+            <div class="letter-signoff">ORI Team<br><strong>M. S. Ramaiah University of Applied Sciences</strong></div>
           </div>
-          <div class="letter-signoff">ORI Team<br><strong>M. S. Ramaiah University of Applied Sciences</strong></div>
         </div>
       </div>
 
@@ -141,10 +166,13 @@
         <button id="clearSearch" class="clear-search" aria-label="Clear search" hidden>&times;</button>
       </div>
       <div class="filter-pills" id="filterPills">
-        <button class="pill active" data-filter="all">All Grants</button>
-        <button class="pill" data-filter="national">National</button>
-        <button class="pill" data-filter="international">International</button>
-        <button class="pill" data-filter="fellowship">Fellowships</button>
+        <div id="rubberFilterMount"></div>
+        <noscript>
+          <button class="pill active" data-filter="all">All Grants</button>
+          <button class="pill" data-filter="national">National</button>
+          <button class="pill" data-filter="international">International</button>
+          <button class="pill" data-filter="fellowship">Fellowships</button>
+        </noscript>
       </div>
       <div class="results-count" id="resultsCount"></div>
     </div>
@@ -206,10 +234,13 @@
 
   <!-- CTA / THANK YOU -->
   <section class="section closing-section">
-    <div class="wrap closing-inner reveal">
-      <h2 class="closing-title">Keep innovating.<br>Keep applying.</h2>
-      <p class="closing-desc">We're here to support every step of your grant journey.</p>
-      <a href="#" id="closingEmail" class="btn btn-primary btn-lg">Email the ORI Team</a>
+    <div class="wrap reveal glow-frame">
+      <div class="glow-decor" id="closingGlowMount"></div>
+      <div class="closing-inner glass">
+        <h2 class="closing-title">Keep innovating.<br>Keep applying.</h2>
+        <p class="closing-desc">We're here to support every step of your grant journey.</p>
+        <a href="#" id="closingEmail" class="btn btn-primary btn-lg">Email the ORI Team</a>
+      </div>
     </div>
   </section>
 
@@ -239,6 +270,7 @@
 </div>
 
 <script src="data.js"></script>
+<script type="module" src="components.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
