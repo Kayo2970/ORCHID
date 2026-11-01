@@ -823,3 +823,8 @@ section[id]{ scroll-margin-top:150px; }
   .grant-agency-chip{ font-size:0.95rem; }
   .agency-logo{ min-width:48px; height:48px; max-width:104px; }
 }
+
+/* rolling calls: logo + larger agency name */
+.ri-head{ display:flex; align-items:center; gap:12px; }
+.rolling-item .ri-agency{ font-size:0.95rem; font-weight:700; color:var(--text-1); letter-spacing:0.01em; text-transform:none; line-height:1.25; }
+.rolling-item .ri-title{ margin-top:12px; }
