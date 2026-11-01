@@ -6,3 +6,6 @@ main = "worker.js"
 directory = "./public"
 binding = "ASSETS"
 not_found_handling = "single-page-application"
+
+# Required by `wrangler preview` (Cloudflare non-production builds); empty = inherit top-level config
+[previews]
