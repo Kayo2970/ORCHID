@@ -361,7 +361,7 @@
   function renderRolling(){
     const q = rollingQuery.trim().toLowerCase();
     // tab counts for the current search
-    $$(".rolling-tab").forEach(t=>{
+    if($("#rollingSearch")) $$(".rolling-tab").forEach(t=>{
       const v = t.getAttribute("data-rolling");
       const n = ROLLING_CALLS[v].filter(r=>rollingMatches(r,q)).length;
       let c = $(".rt-count", t);
@@ -379,16 +379,18 @@
     base.forEach(r=>{ counts[r.agency] = (counts[r.agency]||0)+1; });
     if(rollingAgency && !counts[rollingAgency]) rollingAgency = "";
     const names = Object.keys(counts).sort((x,y)=>x.localeCompare(y));
-    $("#rollingIndex").innerHTML = names.length>1 ? names.map(n=>
+    const idxEl = $("#rollingIndex");
+    if(idxEl) idxEl.innerHTML = names.length>1 ? names.map(n=>
       `<button type="button" class="ri-chip ${n===rollingAgency?"active":""}" data-agency="${esc(n)}" aria-pressed="${n===rollingAgency}">${n} <span>${counts[n]}</span></button>`
     ).join("") : "";
-    $$(".ri-chip", $("#rollingIndex")).forEach(b=>b.addEventListener("click", ()=>{
+    if(idxEl) $$(".ri-chip", idxEl).forEach(b=>b.addEventListener("click", ()=>{
       const ag = b.getAttribute("data-agency");
       rollingAgency = rollingAgency===ag ? "" : ag;
       renderRolling();
     }));
     const list = base.filter(r=>!rollingAgency || r.agency===rollingAgency);
-    $("#rollingCount").textContent = (q||rollingAgency)
+    const cntEl = $("#rollingCount");
+    if(cntEl) cntEl.textContent = (q||rollingAgency)
       ? `${list.length} scheme${list.length===1?"":"s"} found`
       : `${base.length} schemes`;
     $("#rollingList").innerHTML = list.length ? list.map(r=>`
@@ -439,7 +441,7 @@
         globalEmpty.id = "globalEmpty"; globalEmpty.className = "global-empty wrap";
         globalEmpty.innerHTML = `<h3>No grants found</h3><p>Try a different keyword, or browse everything.</p><button type="button" class="btn btn-primary" id="resetSearch">Clear search</button>`;
         $("#toolbarSection").after(globalEmpty);
-        $("#resetSearch").addEventListener("click", ()=> $("#clearSearch").click());
+        $("#resetSearch").addEventListener("click", ()=>{ const c=$("#clearSearch"); if(c) c.click(); });
       }
     } else if(globalEmpty){ globalEmpty.remove(); }
 
@@ -451,14 +453,16 @@
   function initToolbar(){
     const input = $("#searchInput");
     const clearBtn = $("#clearSearch");
-    input.addEventListener("input", ()=>{
-      activeQuery = input.value;
-      clearBtn.hidden = !activeQuery;
-      applyFilters();
-    });
-    clearBtn.addEventListener("click", ()=>{
-      input.value = ""; activeQuery=""; clearBtn.hidden = true; applyFilters(); input.focus();
-    });
+    if(input && clearBtn){
+      input.addEventListener("input", ()=>{
+        activeQuery = input.value;
+        clearBtn.hidden = !activeQuery;
+        applyFilters();
+      });
+      clearBtn.addEventListener("click", ()=>{
+        input.value = ""; activeQuery=""; clearBtn.hidden = true; applyFilters(); input.focus();
+      });
+    }
     // Fallback pills (rendered only inside <noscript>, i.e. when the
     // RubberSegment React island can't mount) still work if present.
     $$(".pill", $("#filterPills")).forEach(pill=>{
@@ -486,12 +490,14 @@
       });
     });
     const input = $("#rollingSearch"), clear = $("#rollingClear");
-    input.addEventListener("input", ()=>{
-      rollingQuery = input.value; rollingAgency = ""; clear.hidden = !rollingQuery; renderRolling();
-    });
-    clear.addEventListener("click", ()=>{
-      input.value = ""; rollingQuery = ""; rollingAgency = ""; clear.hidden = true; renderRolling(); input.focus();
-    });
+    if(input && clear){
+      input.addEventListener("input", ()=>{
+        rollingQuery = input.value; rollingAgency = ""; clear.hidden = !rollingQuery; renderRolling();
+      });
+      clear.addEventListener("click", ()=>{
+        input.value = ""; rollingQuery = ""; rollingAgency = ""; clear.hidden = true; renderRolling(); input.focus();
+      });
+    }
     renderRolling();
   }
 
