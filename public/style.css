@@ -881,3 +881,21 @@ section[id]{ scroll-margin-top:150px; }
 .pillnav-item:focus-visible{ outline:2px solid var(--orchid-magenta); outline-offset:2px; }
 /* no-JS / reduced motion: still readable if the indicator is missing */
 @media (prefers-reduced-motion: reduce){ .pillnav-item{ transition:none; } }
+
+/* ---------- larger orbiting nodes ---------- */
+.orbit-node-inner{ width:150px; gap:8px; padding:12px 8px; }
+.orbit-node-icon{ width:72px; height:72px; }
+.orbit-node-icon svg{ width:30px; height:30px; }
+.orbit-node-label{ font-size:0.95rem; font-weight:700; color:var(--text-0); }
+@media (max-width:720px){
+  .orbit-node-inner{ width:116px; }
+  .orbit-node-icon{ width:56px; height:56px; }
+  .orbit-node-icon svg{ width:24px; height:24px; }
+  .orbit-node-label{ font-size:0.8rem; white-space:normal; }
+}
+@media (max-width:480px){
+  .orbit-node-inner{ width:84px; padding:6px 3px; gap:5px; }
+  .orbit-node-icon{ width:44px; height:44px; }
+  .orbit-node-icon svg{ width:20px; height:20px; }
+  .orbit-node-label{ font-size:0.68rem; }
+}
