@@ -769,8 +769,140 @@ function mountBlurTaglines() {
   );
 }
 
+/* ---------------------------------------------------------------- */
+/* PillNav — glide hover + pill indicator, spring bounce / stretch   */
+/* ---------------------------------------------------------------- */
+
+const PILL_SIZES = {
+  sm: { height: 34, font: 13, pad: 12 },
+  md: { height: 40, font: 14, pad: 15 },
+  lg: { height: 46, font: 15, pad: 18 },
+};
+
+function PillNav({
+  items,
+  activeHref,
+  itemStyle = "plain",
+  hoverEffect = "glide",
+  indicator = "pill",
+  size = "lg",
+  bounce = 0.68,
+  stretch = 0.81,
+  ariaLabel = "Primary",
+}) {
+  const reduce = useReducedMotion();
+  const s = PILL_SIZES[size] || PILL_SIZES.lg;
+  const listRef = useRef(null);
+  const itemRefs = useRef([]);
+  const [hovered, setHovered] = useState(null);
+  const [ready, setReady] = useState(false);
+  const x = useMotionValue(0);
+  const w = useMotionValue(0);
+  const sx = useMotionValue(1);
+  const last = useRef({ x: 0, w: 0 });
+
+  const activeIdx = Math.max(0, items.findIndex(i => i.href === activeHref));
+  const hasActive = items.some(i => i.href === activeHref);
+  const target = hoverEffect === "glide" && hovered !== null ? hovered : (hasActive ? activeIdx : null);
+
+  const measure = idx => {
+    const el = itemRefs.current[idx];
+    if (!el) return null;
+    const li = el.parentElement; /* the <li> is what sits in the list's flow */
+    return { x: li.offsetLeft, w: el.offsetWidth };
+  };
+
+  useLayoutEffect(() => {
+    if (target === null) { setReady(false); return; }
+    const m = measure(target);
+    if (!m) return;
+    if (!ready || reduce) {
+      x.set(m.x); w.set(m.w); sx.set(1);
+      last.current = m;
+      setReady(true);
+      return;
+    }
+    const dist = Math.abs(m.x - last.current.x);
+    const k = Math.min(1, dist / 220);
+    const spring = { type: "spring", duration: 0.55, bounce: clamp(bounce, 0, 0.95) };
+    animate(x, m.x, spring);
+    animate(w, m.w, spring);
+    if (stretch > 0 && dist > 1) {
+      animate(sx, [1, 1 + stretch * 0.3 * (0.35 + 0.65 * k), 1], { duration: 0.55, ease: EASE_OUT });
+    }
+    last.current = m;
+  }, [target, items.length]);
+
+  useEffect(() => {
+    const re = () => {
+      if (target === null) return;
+      const m = measure(target);
+      if (m) { x.set(m.x); w.set(m.w); last.current = m; }
+    };
+    const ro = new ResizeObserver(re);
+    if (listRef.current) ro.observe(listRef.current);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(re);
+    return () => ro.disconnect();
+  }, [target]);
+
+  return html`
+    <nav class="pillnav pillnav-${size}" aria-label=${ariaLabel}>
+      <ul
+        class="pillnav-list"
+        ref=${listRef}
+        onMouseLeave=${() => setHovered(null)}
+        style=${{ height: s.height + 8 }}
+      >
+        ${indicator === "pill" && target !== null && html`
+          <${motion.li}
+            aria-hidden="true"
+            class="pillnav-indicator"
+            style=${{ x, width: w, scaleX: sx, height: s.height, opacity: ready ? 1 : 0 }}
+          />
+        `}
+        ${items.map((it, i) => {
+          const on = target === i;
+          return html`
+            <li key=${it.href} class="pillnav-li">
+              <a
+                ref=${el => (itemRefs.current[i] = el)}
+                href=${it.href}
+                data-nav
+                aria-current=${it.href === activeHref ? "true" : undefined}
+                class=${"pillnav-item pillnav-" + itemStyle + (on ? " is-target" : "") + (it.href === activeHref ? " is-active" : "")}
+                style=${{ height: s.height, fontSize: s.font, padding: "0 " + s.pad + "px" }}
+                onMouseEnter=${() => setHovered(i)}
+                onFocus=${() => setHovered(i)}
+                onBlur=${() => setHovered(null)}
+              >${it.label}</a>
+            </li>
+          `;
+        })}
+      </ul>
+    </nav>
+  `;
+}
+
+function mountPillNav() {
+  const mount = document.getElementById("pillNavMount");
+  const src = document.getElementById("mainNav");
+  if (!mount || !src) return;
+  const items = Array.from(src.querySelectorAll("a[href^='#']")).map(a => ({
+    label: a.textContent.trim(),
+    href: a.getAttribute("href"),
+  }));
+  const root = createRoot(mount);
+  const render = activeHref =>
+    root.render(html`<${PillNav} items=${items} activeHref=${activeHref} itemStyle="plain" hoverEffect="glide" indicator="pill" size="lg" bounce=${0.68} stretch=${0.81} ariaLabel="Sections" />`);
+  render(null);
+  document.getElementById("siteHeader")?.classList.add("has-pillnav");
+  window.ORCHID = window.ORCHID || {};
+  window.ORCHID.setActiveNav = href => render(href);
+}
+
 mountRubberFilter();
 mountBlurTaglines();
+mountPillNav();
 
 mountBorderGlow("heroStatsGlow", {
   edgeSensitivity: 35,

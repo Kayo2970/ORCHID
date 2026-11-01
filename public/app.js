@@ -508,6 +508,7 @@
       a.addEventListener("click", ()=> nav.classList.remove("open"));
     });
 
+    let lastNavActive = undefined;
     const sections = $$("section[id]");
     const navLinks = $$("#mainNav a");
 
@@ -523,11 +524,15 @@
       let current = null;
       sections.forEach(sec=>{
         const rect = sec.getBoundingClientRect();
-        if(rect.top <= 140 && rect.bottom >= 140) current = sec.id;
+        if(rect.top <= 175 && rect.bottom >= 175) current = sec.id;
       });
       navLinks.forEach(l=>{
         l.classList.toggle("active", l.getAttribute("href")===`#${current}`);
       });
+      if(window.ORCHID && window.ORCHID.setActiveNav && current !== lastNavActive){
+        lastNavActive = current;
+        window.ORCHID.setActiveNav(current ? `#${current}` : null);
+      }
 
       $$(".reveal").forEach(el=>{
         const rect = el.getBoundingClientRect();
