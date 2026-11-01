@@ -353,6 +353,7 @@
         <div class="ri-agency">${r.agency}</div>
         <div class="ri-title">${r.title}</div>
         <p class="ri-summary">${r.summary}</p>
+        ${r.link ? `<a class="ri-link" href="${r.link}" target="_blank" rel="noopener noreferrer">Official page →</a>` : ""}
       </div>
     `).join("");
   }

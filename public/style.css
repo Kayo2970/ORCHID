@@ -805,3 +805,8 @@ section[id]{ scroll-margin-top:150px; }
 .calendar-grid .cal-cell:nth-child(-n+21) .cal-tooltip{ bottom:auto; top:110%; }
 .live-tag{ white-space:nowrap; flex:0 0 auto; }
 .deadline-list-card .calendar-card-head{ gap:10px; flex-wrap:wrap; }
+
+.rolling-item{ display:flex; flex-direction:column; }
+.rolling-item .ri-link{ margin-top:auto; padding-top:12px; font-size:0.8rem; font-weight:700; color:var(--orchid-magenta); }
+.rolling-item .ri-link:hover{ text-decoration:underline; }
+.rolling-item .ri-link:focus-visible{ outline:2px solid var(--orchid-magenta); outline-offset:2px; border-radius:4px; }
