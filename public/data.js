@@ -37,7 +37,7 @@ const GRANTS = [
   },
   {
     id: "icssr-senior", category: "national",
-    title: "ICSSR – Senior Fellowship Grant 2026–27 (Second Call)", agency: "ICSSR",
+    title: "ICSSR – Senior Fellowship Grant 2026–27 (Second Call)", agency: "ICSSR", logo: "assets/logos/icssr.png",
     summary: "The Indian Council of Social Science Research (ICSSR), Government of India, invites applications from eligible senior Indian researchers to undertake full-time research contributing to national development and evidence-based solutions to social challenges.",
     thrust: "Social Sciences and allied disciplines, including economics, sociology, political science, public administration, education, law, gender studies, social inclusion, heritage and interdisciplinary research.",
     funding: "₹45,000 per month, plus a contingency grant of ₹40,000 per annum for 2 years.",
@@ -53,7 +53,7 @@ const GRANTS = [
   },
   {
     id: "mines-st", category: "national",
-    title: "Ministry of Mines, Government of India – Science & Technology (S&T) R&D Scheme 2026", agency: "Ministry of Mines, Govt. of India",
+    title: "Ministry of Mines, Government of India – Science & Technology (S&T) R&D Scheme 2026", agency: "Ministry of Mines, Govt. of India", logo: "assets/logos/ministry-mines.jpeg",
     summary: "The Ministry of Mines invites research proposals from eligible universities, academic institutions, national institutes and recognised R&D institutions to promote scientific research and technological innovation in mining, mineral processing and metallurgy.",
     thrust: "Critical and rare-earth minerals, mineral exploration, sustainable mining, mineral beneficiation, metallurgy, advanced materials, recycling and recovery of valuable metals from industrial waste, green technologies and decarbonisation.",
     funding: "Project-based financial assistance as per the Ministry of Mines' S&T-R&D scheme guidelines and approved project requirements.",
@@ -61,7 +61,7 @@ const GRANTS = [
   },
   {
     id: "drdo-dftm", category: "national",
-    title: "DRDO – DFTM Call for Research Proposals under DIA-CoEs 2026", agency: "DRDO",
+    title: "DRDO – DFTM Call for Research Proposals under DIA-CoEs 2026", agency: "DRDO", logo: "assets/logos/drdo.png",
     summary: "The Defence Research and Development Organisation (DRDO), through its Directorate of Futuristic Technology Management (DFTM), invites research proposals from academia and national research institutes to address identified defence research problems through multidisciplinary and collaborative research.",
     thrust: "Stealth and aerospace technologies, navigation systems, radar, advanced materials, quantum-dot infrared detectors, FPGA technology, electronic systems, induction motors and defence power sources.",
     funding: "Project-based funding as per DRDO/DIA-CoE guidelines.",
@@ -87,7 +87,7 @@ const GRANTS = [
   // ---------------- UG & PG STUDENTS GRANTS ----------------
   {
     id: "kscst-spp", category: "student",
-    title: "KSCST – Student Project Programme (SPP), 50th Series 2026–27", agency: "KSCST",
+    title: "KSCST – Student Project Programme (SPP), 50th Series 2026–27", agency: "KSCST", logo: "assets/logos/kscst.jpeg",
     summary: "The Karnataka State Council for Science and Technology (KSCST), Bengaluru, invites project proposals from final-year students to support innovative, practical research addressing real-world challenges and regional development needs.",
     thrust: "Science, Engineering and Technology, Agriculture, Environmental Sustainability, Healthcare, Rural Development, Artificial Intelligence, Renewable Energy and other themes specified in the official call.",
     funding: "As per Guidelines",
@@ -95,7 +95,7 @@ const GRANTS = [
   },
   {
     id: "srfp-2027", category: "student",
-    title: "Science Academies – Summer Research Fellowship Programme (SRFP) 2027", agency: "Science Academies (IASc, INSA, NASI)",
+    title: "Science Academies – Summer Research Fellowship Programme (SRFP) 2027", agency: "Science Academies (IASc, INSA, NASI)", logo: "assets/logos/science-academies.jpeg",
     summary: "The Indian Academy of Sciences (IASc), Bengaluru, in collaboration with the Indian National Science Academy (INSA), New Delhi, and the National Academy of Sciences, India (NASI), Prayagraj, invites applications from eligible students and college/university teachers to undertake a two-month research project under scientists associated with the three academies.",
     thrust: "Biological Sciences, Chemical Sciences, Physical Sciences, Mathematical Sciences, Engineering, Environmental Sciences and interdisciplinary research, depending on the available research guides and projects.",
     funding: "Monthly fellowship to meet living expenses at the research location, along with eligible round-trip train fare.",
@@ -103,7 +103,7 @@ const GRANTS = [
   },
   {
     id: "indiaai-ugpg", category: "student",
-    title: "IndiaAI – Fellowship for Undergraduate (UG) and Postgraduate (PG) Students 2026–27", agency: "IndiaAI, MeitY",
+    title: "IndiaAI – Fellowship for Undergraduate (UG) and Postgraduate (PG) Students 2026–27", agency: "IndiaAI, MeitY", logo: "assets/logos/indiaai.jpeg",
     summary: "IndiaAI, under the Ministry of Electronics and Information Technology (MeitY), GOI, invites eligible UG and PG students to undertake research projects in Artificial Intelligence (AI) and related fields. The fellowship supports innovative student research and practical AI applications across academic disciplines.",
     thrust: "Artificial Intelligence, Machine Learning, Deep Learning, Data Science, Natural Language Processing, Computer Vision, Robotics, AI in Healthcare, Agriculture, Engineering, Business and other AI-related interdisciplinary applications.",
     funding: "UG students: up to ₹1 lakh for the eligible project; PG students: up to ₹2 lakh for the eligible programme; additional support of up to ₹1 lakh for eligible international AI conference travel and accommodation, subject to scheme guidelines.",
@@ -121,7 +121,7 @@ const GRANTS = [
   },
   {
     id: "syngene-ecra", category: "fellowship",
-    title: "Syngene International – Early Career Research Awards 2026–27", agency: "Syngene International",
+    title: "Syngene International – Early Career Research Awards 2026–27", agency: "Syngene International", logo: "assets/logos/syngene.jpeg",
     summary: "Syngene International Limited invites applications from early-career faculty members in Life Sciences at Indian universities and research institutions to support independent, innovative, high-risk, high-reward research addressing healthcare challenges.",
     thrust: "Drug discovery and development, translational research, novel technologies, biomarkers, assays, disease models, and Artificial Intelligence (AI) and Machine Learning (ML) applications in healthcare research.",
     funding: "Research grant of ₹50 lakh per award for up to 4 years, as per the official guidelines.",
@@ -129,7 +129,7 @@ const GRANTS = [
   },
   {
     id: "indiaai-phd", category: "fellowship",
-    title: "IndiaAI – Research Fellowship for PhD Scholars 2026–27", agency: "IndiaAI, MeitY",
+    title: "IndiaAI – Research Fellowship for PhD Scholars 2026–27", agency: "IndiaAI, MeitY", logo: "assets/logos/indiaai.jpeg",
     summary: "IndiaAI, under the Ministry of Electronics and Information Technology (MeitY), GOI, invites applications to support eligible full-time PhD scholars conducting research in Artificial Intelligence (AI) and related fields, strengthening India's AI research and innovation ecosystem.",
     thrust: "Artificial Intelligence, Machine Learning, Deep Learning, Natural Language Processing, Computer Vision, Data Science, Robotics and other AI-related research areas.",
     funding: "Monthly fellowship of ₹70,000 in Years 1–2, ₹75,000 in Year 3, and ₹80,000 in Years 4–5; annual research grant of ₹2 lakh; and one-time international conference travel/accommodation support of up to ₹1 lakh, subject to scheme guidelines.",
@@ -137,7 +137,7 @@ const GRANTS = [
   },
   {
     id: "ayush-phd", category: "fellowship",
-    title: "Ministry of AYUSH – AYUSH PhD Fellowship Scheme 2026", agency: "Ministry of AYUSH, Govt. of India",
+    title: "Ministry of AYUSH – AYUSH PhD Fellowship Scheme 2026", agency: "Ministry of AYUSH, Govt. of India", logo: "assets/logos/ayush.jpeg",
     summary: "The Ministry of AYUSH, Government of India, through the Central Council for Research in Ayurvedic Sciences (CCRAS) and the Central Council for Research in Yoga & Naturopathy (CCRYN), invites eligible NET-qualified scholars to pursue PhD research in AYUSH-related disciplines and allied life sciences.",
     thrust: "Ayurveda, Yoga and Naturopathy, medicinal plants, pharmacognosy, phytochemistry, clinical research, drug development, therapeutic validation and interdisciplinary biomedical research.",
     funding: "Junior Research Fellow (JRF): ₹37,000 per month + HRA; Senior Research Fellow (SRF): ₹42,000 per month + HRA; additional grants: ₹20,000 annual contingency grant and a one-time research grant of ₹1,00,000.",
@@ -145,7 +145,7 @@ const GRANTS = [
   },
   {
     id: "humboldt", category: "fellowship",
-    title: "Alexander von Humboldt Foundation – Humboldt Research Fellowship 2027", agency: "Alexander von Humboldt Foundation",
+    title: "Alexander von Humboldt Foundation – Humboldt Research Fellowship 2027", agency: "Alexander von Humboldt Foundation", logo: "assets/logos/humboldt.png",
     summary: "The Alexander von Humboldt Foundation, Germany, invites applications from highly qualified international postdoctoral and experienced researchers to conduct independent research in collaboration with a host institution in Germany. The fellowship is open to researchers across all academic disciplines.",
     thrust: "All academic disciplines, including Life Sciences, Medicine, Engineering, Natural Sciences, Mathematics, Physics, Chemistry, Environmental Sciences, Social Sciences and Humanities.",
     funding: "Postdoctoral researchers: €3,000 per month for 6–24 months; experienced researchers: €3,600 per month for 6–18 months. Additional benefits: research-cost support for the host institution, travel expenses, health insurance subsidies, family allowances and German-language courses, subject to eligibility and programme rules.",
@@ -153,7 +153,7 @@ const GRANTS = [
   },
   {
     id: "cob-travel", category: "fellowship",
-    title: "The Company of Biologists – Travelling Fellowships 2026", agency: "The Company of Biologists",
+    title: "The Company of Biologists – Travelling Fellowships 2026", agency: "The Company of Biologists", logo: "assets/logos/company-of-biologists.jpeg",
     summary: "The Company of Biologists offers travelling fellowships to graduate students and postdoctoral researchers to undertake collaborative research visits to other laboratories, develop new research skills and establish scientific collaborations.",
     thrust: "Developmental Biology, Cell Biology, Experimental Biology and Disease Models, aligned with the participating journals.",
     funding: "Up to £3,000 to cover travel, accommodation, subsistence, visa fees and laboratory bench fees, as applicable.",
@@ -179,7 +179,7 @@ const GRANTS = [
   },
   {
     id: "amazon-ara", category: "international",
-    title: "Amazon – Amazon Research Awards (ARA), Fall 2026", agency: "Amazon Science",
+    title: "Amazon – Amazon Research Awards (ARA), Fall 2026", agency: "Amazon Science", logo: "assets/logos/amazon-science.png",
     summary: "Amazon Research Awards invites university faculty and eligible nonprofit researchers worldwide to submit innovative research proposals addressing scientific and technological challenges.",
     thrust: "Agentic AI, AI for Information Security, Amazon Security, Automated Reasoning, AWS Cryptography, AI kernel and framework development using Trainium, Multilingual and Contextual AI Evaluation, On-Device Multimodal Perception, and Synthetic Data Generation for Multimodal Perception.",
     funding: "Unrestricted research funding and AWS promotional credits, with award amounts depending on the specific research area and call guidelines.",
@@ -187,7 +187,7 @@ const GRANTS = [
   },
   {
     id: "wcrf-inspire", category: "international",
-    title: "World Cancer Research Fund International (WCRF) – INSPIRE Research Challenge", agency: "WCRF International",
+    title: "World Cancer Research Fund International (WCRF) – INSPIRE Research Challenge", agency: "WCRF International", logo: "assets/logos/wcrf.jpeg",
     summary: "The INSPIRE Research Challenge supports early-career researchers worldwide in conducting innovative cancer research to improve cancer prevention, treatment and survivorship.",
     thrust: "Integrative Oncology, Lifestyle and Weight-Loss Medications, Early-Onset Cancers, Early-Life Exposures and Future Cancer Risk, Ingested Contaminants in Food and Drinking Water, Ultra-Processed Foods and Cancer Risk.",
     funding: "As per the Guidelines",
