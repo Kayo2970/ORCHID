@@ -336,10 +336,20 @@
         <p class="section-lede">No fixed deadline — accepted year-round. Reach out to ORI any time to discuss these.</p>
       </div>
 
+      <div class="rolling-search reveal">
+        <div class="search-box">
+          <input type="text" id="rollingSearch" placeholder="Search these schemes by name, agency or keyword…" autocomplete="off" aria-label="Search schemes open throughout the year">
+          <button id="rollingClear" class="clear-search" aria-label="Clear search" hidden>&times;</button>
+        </div>
+        <div class="results-count" id="rollingCount" aria-live="polite"></div>
+      </div>
+
       <div class="rolling-tabs reveal" role="tablist">
         <button class="rolling-tab active" role="tab" aria-selected="true" data-rolling="national">National Research Grants &amp; Fellowships</button>
         <button class="rolling-tab" role="tab" aria-selected="false" data-rolling="international">International &amp; Collaborative Research Grants</button>
       </div>
+
+      <div class="rolling-index" id="rollingIndex" aria-label="Browse by agency"></div>
 
       <div class="rolling-list" id="rollingList"></div>
     </div>

@@ -346,16 +346,59 @@
   }
 
   /* ---------------- ROLLING CALLS ---------------- */
-  function renderRolling(view){
-    const list = ROLLING_CALLS[view] || [];
-    $("#rollingList").innerHTML = list.map(r=>`
+  let rollingView = "national", rollingQuery = "", rollingAgency = "";
+  const esc = s => String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+  function rollingMatches(r, q){
+    return !q || `${r.title} ${r.agency} ${r.summary}`.toLowerCase().includes(q);
+  }
+  function setRollingTab(view){
+    rollingView = view;
+    $$(".rolling-tab").forEach(t=>{
+      const on = t.getAttribute("data-rolling")===view;
+      t.classList.toggle("active", on); t.setAttribute("aria-selected", on?"true":"false");
+    });
+  }
+  function renderRolling(){
+    const q = rollingQuery.trim().toLowerCase();
+    // tab counts for the current search
+    $$(".rolling-tab").forEach(t=>{
+      const v = t.getAttribute("data-rolling");
+      const n = ROLLING_CALLS[v].filter(r=>rollingMatches(r,q)).length;
+      let c = $(".rt-count", t);
+      if(!c){ c = document.createElement("span"); c.className="rt-count"; t.appendChild(c); }
+      c.textContent = n;
+    });
+    // if the current tab has no match but the other one does, jump to it
+    if(q && !ROLLING_CALLS[rollingView].some(r=>rollingMatches(r,q))){
+      const other = rollingView==="national" ? "international" : "national";
+      if(ROLLING_CALLS[other].some(r=>rollingMatches(r,q))) setRollingTab(other);
+    }
+    const base = ROLLING_CALLS[rollingView].filter(r=>rollingMatches(r,q));
+    // agency index (chips) for the current tab + search
+    const counts = {};
+    base.forEach(r=>{ counts[r.agency] = (counts[r.agency]||0)+1; });
+    if(rollingAgency && !counts[rollingAgency]) rollingAgency = "";
+    const names = Object.keys(counts).sort((x,y)=>x.localeCompare(y));
+    $("#rollingIndex").innerHTML = names.length>1 ? names.map(n=>
+      `<button type="button" class="ri-chip ${n===rollingAgency?"active":""}" data-agency="${esc(n)}" aria-pressed="${n===rollingAgency}">${n} <span>${counts[n]}</span></button>`
+    ).join("") : "";
+    $$(".ri-chip", $("#rollingIndex")).forEach(b=>b.addEventListener("click", ()=>{
+      const ag = b.getAttribute("data-agency");
+      rollingAgency = rollingAgency===ag ? "" : ag;
+      renderRolling();
+    }));
+    const list = base.filter(r=>!rollingAgency || r.agency===rollingAgency);
+    $("#rollingCount").textContent = (q||rollingAgency)
+      ? `${list.length} scheme${list.length===1?"":"s"} found`
+      : `${base.length} schemes`;
+    $("#rollingList").innerHTML = list.length ? list.map(r=>`
       <div class="rolling-item">
         <div class="ri-head">${agencyBadgeHTML(r)}<div class="ri-agency">${r.agency}</div></div>
         <div class="ri-title">${r.title}</div>
         <p class="ri-summary">${r.summary}</p>
         ${r.link ? `<a class="ri-link" href="${r.link}" target="_blank" rel="noopener noreferrer">Official page →</a>` : ""}
       </div>
-    `).join("");
+    `).join("") : `<div class="section-empty">No schemes match your search. Try another keyword or clear the search.</div>`;
   }
 
   /* ---------------- SEARCH + FILTER ---------------- */
@@ -437,12 +480,19 @@
   function initRollingTabs(){
     $$(".rolling-tab").forEach(tab=>{
       tab.addEventListener("click", ()=>{
-        $$(".rolling-tab").forEach(t=>{ t.classList.remove("active"); t.setAttribute("aria-selected","false"); });
-        tab.classList.add("active"); tab.setAttribute("aria-selected","true");
-        renderRolling(tab.getAttribute("data-rolling"));
+        setRollingTab(tab.getAttribute("data-rolling"));
+        rollingAgency = "";
+        renderRolling();
       });
     });
-    renderRolling("national");
+    const input = $("#rollingSearch"), clear = $("#rollingClear");
+    input.addEventListener("input", ()=>{
+      rollingQuery = input.value; rollingAgency = ""; clear.hidden = !rollingQuery; renderRolling();
+    });
+    clear.addEventListener("click", ()=>{
+      input.value = ""; rollingQuery = ""; rollingAgency = ""; clear.hidden = true; renderRolling(); input.focus();
+    });
+    renderRolling();
   }
 
   /* ---------------- NAV / HEADER ---------------- */
