@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ORCHID — Grants &amp; Fellowships Newsletter | Issue 27 | ORI, RUAS</title>
-<meta name="description" content="ORCHID Grants & Fellowships Newsletter, Issue No. 27 (September 2026) — Office of Research & Innovation, M.S. Ramaiah University of Applied Sciences. Browse national & international research grants, fellowships and rolling calls.">
+<title>ORCHID — Grants &amp; Fellowships Newsletter | Issue 29 | ORI, RUAS</title>
+<meta name="description" content="ORCHID Grants & Fellowships Newsletter, Issue No. 29 (November 2026) — Office of Research & Innovation, M.S. Ramaiah University of Applied Sciences. Browse national & international research grants, fellowships and rolling calls.">
 <link rel="icon" href="assets/ruas-shield.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,8 +53,9 @@
       <a href="#desk" data-nav>ORI Desk</a>
       <a href="#calendar" data-nav>Deadlines</a>
       <a href="#national" data-nav>National</a>
-      <a href="#international" data-nav>International</a>
+      <a href="#students" data-nav>UG &amp; PG</a>
       <a href="#fellowships" data-nav>Fellowships</a>
+      <a href="#international" data-nav>International</a>
       <a href="#rolling" data-nav>Rolling Calls</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -70,7 +71,7 @@
     <div class="wrap hero-inner">
       <div class="hero-badge reveal">
         <span class="pulse-dot"></span>
-        Issue 27 &nbsp;·&nbsp; September 2026
+        Issue 29 &nbsp;·&nbsp; November 2026
       </div>
       <h1 class="hero-title reveal">
         <span class="hero-word">ORCHID</span>
@@ -217,14 +218,14 @@
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">01 · Calendar</span>
-        <h2>Dates &amp; Deadlines — September 2026</h2>
+        <h2>Dates &amp; Deadlines — November 2026</h2>
         <p class="section-lede">Every highlighted date on the calendar has at least one grant closing. Hover or tap a date to see what's due, or scan the live countdown list alongside it.</p>
       </div>
 
       <div class="calendar-layout reveal">
         <div class="calendar-card">
           <div class="calendar-card-head">
-            <h3>September 2026</h3>
+            <h3>November 2026</h3>
           </div>
           <div class="calendar-grid" id="calendarGrid"></div>
           <div class="calendar-legend">
@@ -258,8 +259,9 @@
         <noscript>
           <button class="pill active" data-filter="all">All Grants</button>
           <button class="pill" data-filter="national">National</button>
-          <button class="pill" data-filter="international">International</button>
+          <button class="pill" data-filter="student">UG &amp; PG</button>
           <button class="pill" data-filter="fellowship">Fellowships</button>
+          <button class="pill" data-filter="international">International</button>
         </noscript>
       </div>
       <div class="results-count" id="resultsCount"></div>
@@ -272,33 +274,45 @@
       <div class="section-head reveal">
         <span class="eyebrow">02 · National</span>
         <h2>National Research Grants</h2>
-        <p class="section-lede">Funding calls from ANRF, DBT, DST, ICMR, CSIR, VGST, iDEX and other national agencies.</p>
+        <p class="section-lede">Funding calls from ANRF, ICMR, ICSSR, DRDO, the Ministry of Mines and other national agencies.</p>
       </div>
       <div class="grant-grid" id="nationalGrid"></div>
     </div>
   </section>
 
-  <!-- INTERNATIONAL -->
-  <section class="section grants-section alt" id="international">
+  <!-- UG & PG STUDENTS -->
+  <section class="section grants-section alt" id="students">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">03 · International</span>
-        <h2>International Research Grants</h2>
-        <p class="section-lede">Cross-border collaborative programmes with global funding partners.</p>
+        <span class="eyebrow">03 · UG &amp; PG Students</span>
+        <h2>UG &amp; PG Students Grants</h2>
+        <p class="section-lede">Project grants and fellowships for undergraduate and postgraduate students.</p>
       </div>
-      <div class="grant-grid" id="internationalGrid"></div>
+      <div class="grant-grid" id="studentGrid"></div>
     </div>
   </section>
 
   <!-- FELLOWSHIPS -->
-  <section class="section grants-section" id="fellowships">
+  <section class="section grants-section alt" id="fellowships">
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">04 · Fellowships</span>
-        <h2>Fellowship Grants</h2>
-        <p class="section-lede">Postdoctoral, early-career and mobility fellowships for researchers at every stage.</p>
+        <h2>Fellowship &amp; Awards Grants</h2>
+        <p class="section-lede">PhD, early-career, postdoctoral and mobility fellowships and awards for researchers at every stage.</p>
       </div>
       <div class="grant-grid" id="fellowshipGrid"></div>
+    </div>
+  </section>
+
+  <!-- INTERNATIONAL -->
+  <section class="section grants-section" id="international">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">05 · International</span>
+        <h2>International Research Grants</h2>
+        <p class="section-lede">Calls from Biocodex, Amazon Science, WCRF and other global funding partners.</p>
+      </div>
+      <div class="grant-grid" id="internationalGrid"></div>
     </div>
   </section>
 
@@ -306,7 +320,7 @@
   <section class="section rolling-section alt" id="rolling">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">05 · Rolling Calls</span>
+        <span class="eyebrow">06 · Rolling Calls</span>
         <h2>Schemes Open Throughout the Year</h2>
         <p class="section-lede">No fixed deadline — accepted year-round. Reach out to ORI any time to discuss these.</p>
       </div>
@@ -341,7 +355,7 @@
       <p>Office of Research &amp; Innovation (ORI)<br>Bengaluru, Karnataka, India</p>
     </div>
     <div class="footer-meta">
-      <p>ORCHID Newsletter · Issue No. 27 · September 2026</p>
+      <p>ORCHID Newsletter · Issue No. 29 · November 2026</p>
       <p><a id="footerEmail" href="#"></a></p>
       <p class="footer-note">Built as a living companion to the ORCHID newsletter deck — deadlines shown are countdowns from today.</p>
     </div>

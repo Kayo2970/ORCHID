@@ -528,6 +528,7 @@ img{ max-width:100%; display:block; }
 }
 .badge-national{ background:rgba(226,121,10,0.16); color:var(--orchid-orange); }
 .badge-international{ background:rgba(106,26,137,0.16); color:var(--orchid-violet); }
+.badge-student{ background:rgba(60,70,180,0.14); color:var(--orchid-indigo); }
 .badge-fellowship{ background:rgba(201,13,108,0.14); color:var(--orchid-magenta); }
 
 /* ---------- toolbar ---------- */

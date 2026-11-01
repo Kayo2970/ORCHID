@@ -716,8 +716,9 @@ function mountRubberFilter() {
       items=${[
         { value: "all", label: "All Grants" },
         { value: "national", label: "National" },
-        { value: "international", label: "International" },
-        { value: "fellowship", label: "Fellowships" }
+        { value: "student", label: "UG & PG" },
+        { value: "fellowship", label: "Fellowships" },
+        { value: "international", label: "International" }
       ]}
       defaultValue="all"
       onChange=${value => window.ORCHID?.setFilter?.(value)}

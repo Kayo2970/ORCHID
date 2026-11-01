@@ -49,7 +49,7 @@
       .toUpperCase() || "•";
   }
 
-  const CATEGORY_LABEL = { national:"National", international:"International", fellowship:"Fellowship" };
+  const CATEGORY_LABEL = { national:"National", international:"International", fellowship:"Fellowship", student:"UG & PG Students" };
 
   function agencyBadgeHTML(g, extraClass){
     const cls = extraClass ? `agency-logo ${extraClass}` : "agency-logo";
@@ -65,11 +65,13 @@
     const national = GRANTS.filter(g=>g.category==="national").length;
     const intl = GRANTS.filter(g=>g.category==="international").length;
     const fellow = GRANTS.filter(g=>g.category==="fellowship").length;
+    const student = GRANTS.filter(g=>g.category==="student").length;
     const rolling = ROLLING_CALLS.national.length + ROLLING_CALLS.international.length;
     const stats = [
       { num: national, label: "National Grants" },
-      { num: intl, label: "International Grants" },
+      { num: student, label: "UG & PG Grants" },
       { num: fellow, label: "Fellowships" },
+      { num: intl, label: "International Grants" },
       { num: rolling, label: "Rolling Calls" }
     ];
     $("#heroStats").innerHTML = stats.map(s=>`
@@ -117,21 +119,21 @@
   /* ---------------- CALENDAR ---------------- */
   function renderCalendar(){
     const grid = $("#calendarGrid");
-    const cal = CALENDAR_2026_09;
+    const cal = CALENDAR;
     let html = DOW.map(d=>`<div class="cal-dow">${d}</div>`).join("");
 
     for(let i=0;i<cal.startWeekday;i++){
       html += `<div class="cal-cell empty"></div>`;
     }
 
-    const isTodayMonth = NOW.getFullYear()===2026 && NOW.getMonth()===8;
+    const isTodayMonth = NOW.getFullYear()===cal.year && NOW.getMonth()===cal.month;
 
     for(let day=1; day<=cal.daysInMonth; day++){
       const ids = cal.deadlineDays[day];
       const isToday = isTodayMonth && NOW.getDate()===day;
       if(ids && ids.length){
         const grants = ids.map(id=>GRANTS.find(g=>g.id===id)).filter(Boolean);
-        const iso = `2026-09-${String(day).padStart(2,"0")}`;
+        const iso = `${cal.year}-${String(cal.month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
         const cls = urgencyClass(iso,false);
         const names = grants.map(g=>g.title).join(" · ");
         html += `
@@ -192,7 +194,9 @@
     const cls = urgencyClass(g.deadline, g.noFixedDeadline);
     let deadlineLabel;
     if(g.noFixedDeadline){
-      deadlineLabel = "No fixed deadline";
+      deadlineLabel = "Open throughout the year";
+    } else if(g.upcoming){
+      deadlineLabel = "Upcoming call";
     } else {
       const dl = daysLeft(g.deadline);
       deadlineLabel = dl < 0 ? `Closed &middot; ${fmtDate(g.deadline)}` : `${dl} day${dl===1?"":"s"} left &middot; ${fmtDate(g.deadline)}`;
@@ -233,8 +237,8 @@
   }
 
   function renderGrantSections(){
-    ["national","international","fellowship"].forEach(cat=>{
-      const el = $(`#${cat==="fellowship"?"fellowship":cat}Grid`);
+    ["national","student","fellowship","international"].forEach(cat=>{
+      const el = $(`#${cat}Grid`);
       const items = GRANTS.filter(g=>g.category===cat);
       el.innerHTML = items.map(grantCardHTML).join("");
       attachCardEvents(el);
@@ -246,7 +250,9 @@
     const cls = urgencyClass(g.deadline, g.noFixedDeadline);
     let deadlineLabel;
     if(g.noFixedDeadline){
-      deadlineLabel = "No fixed deadline";
+      deadlineLabel = "Open throughout the year";
+    } else if(g.upcoming){
+      deadlineLabel = "Upcoming call";
     } else {
       const dl = daysLeft(g.deadline);
       deadlineLabel = dl < 0 ? `Closed on ${fmtDate(g.deadline)}` : `${dl} day${dl===1?"":"s"} left &middot; closes ${fmtDate(g.deadline)}`;
@@ -305,7 +311,7 @@
     const q = activeQuery.trim().toLowerCase();
     let visible = 0;
 
-    ["national","international","fellowship"].forEach(cat=>{
+    ["national","student","fellowship","international"].forEach(cat=>{
       const el = $(`#${cat}Grid`);
       const cards = $$(".grant-card", el);
       cards.forEach(card=>{

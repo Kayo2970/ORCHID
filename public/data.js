@@ -1,288 +1,197 @@
-/* ORCHID Newsletter — Issue No. 27 | September 2026
+/* ORCHID Newsletter — Issue No. 29 | November 2026
    Office of Research & Innovation (ORI), M.S. Ramaiah University of Applied Sciences
    Structured content extracted from the source newsletter deck. */
 
 const NEWSLETTER = {
-  issue: "Issue 27",
-  month: "September 2026",
+  issue: "Issue 29",
+  month: "November 2026",
   contactEmail: "Grants.research@msruas.ac.in",
   letter: {
     greeting: "Dear RUAS Researchers,",
     paragraphs: [
-      "Greetings from the Office of Research & Innovation (ORI)!",
-      "We are pleased to present the ORCHID Newsletter – Issue No. 27 (September 2026), featuring a wide range of national and international research grants, collaborative programs, fellowships, travel grants, awards, and rolling calls from leading funding agencies.",
-      "This edition highlights opportunities from ANRF, ICMR, DST, ICSSR, BIRAC, CEFIPRA, AICTE, DBT, VGST, CSIR, iDEX, and other prestigious organizations across key research domains such as AI & Data Science, Healthcare & Biotechnology, Defence, Sustainability, Agriculture, and Social Sciences.",
-      "With several major deadlines falling this month — including DBT BioCARe (23 Sep), multiple VGST schemes and the DBT T Cell Vaccines & Biologics Programme (25 Sep), and CSIR, ICMR-VDRL, CEFIPRA and iDEX calls (30 Sep) — we encourage all faculty members and research scholars to act early and submit competitive, high-quality research proposals. ORI remains committed to supporting researchers throughout the grant application process."
+      "Welcome to the November 2026 issue of ORCHID, the Grants & Fellowships Newsletter of the Office of Research & Innovation (ORI). This issue brings together national, international and fellowship opportunities, along with schemes that remain open throughout the year, so that you can plan your proposals well in advance.",
+      "November is a busy month for funding deadlines. The ANRF Inclusivity Research Grant (03-Nov), the Amazon Research Awards and the WCRF INSPIRE Research Challenge (both 04-Nov) close early in the month, followed by the ICMR Centres for Advanced Research under NIRMAN–AT (13-Nov). Several important calls then close on 30-Nov, including the ICMR First in the World Challenge Grants, the IndiaAI fellowships, the KSCST Student Project Programme, the Science Academies Summer Research Fellowship Programme and the Syngene Early Career Research Awards.",
+      "Our UG and PG students are warmly encouraged to explore the KSCST, Science Academies and IndiaAI student opportunities, while faculty and research scholars will find calls spread across Health Sciences, Advanced Materials & Nano-technology, and Data Science & Artificial Intelligence. The cover page maps the live calls to these thrust areas so that you can quickly find what matches your work. The ANRF AI for Science and Engineering Mission is listed as an upcoming call, and early planning of collaborations is advised.",
+      "Please read the full guidelines, eligibility conditions and deadlines on the official page of each agency through the links provided. For any assistance with your proposals, write to us at Grants.research@msruas.ac.in. Let us keep innovating and applying. Wishing you a productive and rewarding month ahead."
     ]
   },
   thesisStats: [
-    { label: "Health Sciences", count: 49 },
-    { label: "Data Science & Artificial Intelligence", count: 19 },
-    { label: "Advanced Materials, Manufacturing & Nano-technology", count: 13 },
-    { label: "Miscellaneous", count: 12 }
+    { label: "Health Sciences", count: 4 },
+    { label: "Data Science & Artificial Intelligence", count: 4 },
+    { label: "Advanced Materials & Nano-technology", count: 3 },
+    { label: "Miscellaneous", count: 4 }
   ]
 };
 
-/* Each grant: id, title, category (national|international|fellowship), agency,
-   summary, thrust, funding, deadline (ISO date or null), noFixedDeadline (bool), link */
+/* Each grant: id, title, category (national|student|fellowship|international), agency,
+   summary, thrust, funding, deadline (ISO date or null), noFixedDeadline (bool), upcoming (bool), link */
 const GRANTS = [
   // ---------------- NATIONAL RESEARCH GRANTS ----------------
   {
-    id: "dbt-biocare",
-    category: "national",
-    title: "DBT – BioCARe Programme 2026–27",
-    agency: "DBT",
-    logo: "assets/logos/dbt.jpeg",
-    summary: "Supports career development and re-orientation of women researchers in Biotechnology and allied areas, particularly those seeking to establish or advance their research careers.",
-    thrust: "Animal & Marine Biotechnology, Bioengineering & Biomaterials, Medical Biotechnology, Environmental Biotechnology & Bioenergy, and Plant & Agricultural Biotechnology.",
-    funding: "As per DBT BioCARe programme norms",
-    deadline: "2026-09-23",
-    link: "https://rcb.res.in/files/2026-08/call_for_application_under_dbt-biocare_for_2026-27.pdf"
+    id: "anrf-irg", category: "national",
+    title: "ANRF – Inclusivity Research Grant (IRG) 2026", agency: "ANRF", logo: "assets/logos/anrf.jpeg",
+    summary: "The Anusandhan National Research Foundation (ANRF), Government of India, invites research proposals from eligible researchers belonging to Scheduled Caste (SC) and Scheduled Tribe (ST) categories to undertake innovative research in Science and Engineering.",
+    thrust: "All areas of Science and Engineering, including frontier research, interdisciplinary science, engineering and technology.",
+    funding: "Up to ₹60 lakh plus overhead charges for a maximum period of 3 years.",
+    deadline: "2026-11-03", link: "https://anrfonline.in/ANRF/inrg_anrf"
   },
   {
-    id: "vgst-gre",
-    category: "national",
-    title: "VGST – Grants for Research Excellence (GRE) 2026–27",
-    agency: "KSTePS, Government of Karnataka",
-    logo: "assets/logos/vgst-ksteps.png",
-    summary: "Supports high-quality research in Science, Engineering and Medical Sciences by providing financial assistance to eligible researchers in Karnataka.",
-    thrust: "Science & Technology, Engineering, Medical Sciences and interdisciplinary research.",
-    funding: "Up to ₹40 lakh for 2 years for undertaking impactful research projects.",
-    deadline: "2026-09-25",
-    link: "https://vgstdst.karnataka.gov.in/uploads/Call%20for%20Proposals%202026-27_1788515985.pdf"
+    id: "icssr-senior", category: "national",
+    title: "ICSSR – Senior Fellowship Grant 2026–27 (Second Call)", agency: "ICSSR",
+    summary: "The Indian Council of Social Science Research (ICSSR), Government of India, invites applications from eligible senior Indian researchers to undertake full-time research contributing to national development and evidence-based solutions to social challenges.",
+    thrust: "Social Sciences and allied disciplines, including economics, sociology, political science, public administration, education, law, gender studies, social inclusion, heritage and interdisciplinary research.",
+    funding: "₹45,000 per month, plus a contingency grant of ₹40,000 per annum for 2 years.",
+    deadline: "2026-11-20", link: "https://www.icssr.org/index.php/hi/node/701?"
   },
   {
-    id: "vgst-kfist",
-    category: "national",
-    title: "VGST – Karnataka Fund for Infrastructure Strengthening in Science & Technology (K-FIST)",
-    agency: "KSTePS, Government of Karnataka",
-    logo: "assets/logos/vgst-ksteps.png",
-    summary: "Supports strengthening and upgrading research infrastructure and facilities in higher education and research institutions across Karnataka.",
-    thrust: "Research infrastructure, advanced scientific equipment, laboratory strengthening and capacity building in Science, Technology, Engineering & allied disciplines.",
-    funding: "Up to ₹20 lakh for 2 years",
-    deadline: "2026-09-25",
-    link: "https://vgstdst.karnataka.gov.in/uploads/Call%20for%20Proposals%202026-27_1788515985.pdf"
+    id: "icmr-car", category: "national",
+    title: "ICMR – Centres for Advanced Research (CAR) under NIRMAN–AT 2026", agency: "ICMR", logo: "assets/logos/icmr.png",
+    summary: "The Indian Council of Medical Research (ICMR) invites research proposals to establish advanced research centres for developing, evaluating and translating affordable assistive technologies for persons with disabilities and functional limitations.",
+    thrust: "Mobility aids, prosthetics and orthotics, vision and hearing aids, communication technologies, self-care devices, fall prevention, safety and independent living.",
+    funding: "Up to ₹15 crore per centre for a maximum period of 5 years.",
+    deadline: "2026-11-13", link: "https://www.icmr.gov.in/icmrobject/uploads/Call/1791972387_carassistivetechcall_v2.pdf"
   },
   {
-    id: "vgst-ecra",
-    category: "national",
-    title: "VGST – Early Career Research Award (ECRA) 2026–27",
-    agency: "KSTePS, Government of Karnataka",
-    logo: "assets/logos/vgst-ksteps.png",
-    summary: "Provides financial support to higher educational institutions and research centres in Karnataka for creating or upgrading S&T-based infrastructure to strengthen education and research.",
-    thrust: "Emerging and innovative research across Science, Technology, Engineering, Medical and allied disciplines.",
-    funding: "Up to ₹10 lakh for 2 years",
-    deadline: "2026-09-25",
-    link: "https://vgstdst.karnataka.gov.in/uploads/Call%20for%20Proposals%202026-27_1788515985.pdf"
+    id: "mines-st", category: "national",
+    title: "Ministry of Mines, Government of India – Science & Technology (S&T) R&D Scheme 2026", agency: "Ministry of Mines, Govt. of India",
+    summary: "The Ministry of Mines invites research proposals from eligible universities, academic institutions, national institutes and recognised R&D institutions to promote scientific research and technological innovation in mining, mineral processing and metallurgy.",
+    thrust: "Critical and rare-earth minerals, mineral exploration, sustainable mining, mineral beneficiation, metallurgy, advanced materials, recycling and recovery of valuable metals from industrial waste, green technologies and decarbonisation.",
+    funding: "Project-based financial assistance as per the Ministry of Mines' S&T-R&D scheme guidelines and approved project requirements.",
+    deadline: "2026-11-21", link: "https://mines.gov.in"
   },
   {
-    id: "vgst-aorp",
-    category: "national",
-    title: "VGST – Award for Outstanding Research Publications (AORP) 2026–27",
-    agency: "KSTePS, Government of Karnataka",
-    logo: "assets/logos/vgst-ksteps.png",
-    summary: "Recognizes outstanding peer-reviewed research publications by researchers in Karnataka and encourages high-quality research and scholarly contributions.",
-    thrust: "High-quality research publications, scientific excellence and impactful scholarly contributions across Science, Technology, Engineering, Medical and allied disciplines.",
-    funding: "₹25,000 cash award for an eligible outstanding research publication.",
-    deadline: "2026-09-25",
-    link: "https://vgstdst.karnataka.gov.in/uploads/Call%20for%20Proposals%202026-27_1788515985.pdf"
+    id: "drdo-dftm", category: "national",
+    title: "DRDO – DFTM Call for Research Proposals under DIA-CoEs 2026", agency: "DRDO",
+    summary: "The Defence Research and Development Organisation (DRDO), through its Directorate of Futuristic Technology Management (DFTM), invites research proposals from academia and national research institutes to address identified defence research problems through multidisciplinary and collaborative research.",
+    thrust: "Stealth and aerospace technologies, navigation systems, radar, advanced materials, quantum-dot infrared detectors, FPGA technology, electronic systems, induction motors and defence power sources.",
+    funding: "Project-based funding as per DRDO/DIA-CoE guidelines.",
+    deadline: "2026-12-31", link: "https://drdo.gov.in/drdo/en/announcement/call-proposals-dftm-invites-research-proposals-research-problems-dia-coes"
   },
   {
-    id: "vgst-fdp",
-    category: "national",
-    title: "VGST – Faculty Development Program (FDP) 2026–27",
-    agency: "KSTePS, Government of Karnataka",
-    logo: "assets/logos/vgst-ksteps.png",
-    summary: "Supports faculty training and capacity building through short-term workshops focused on emerging technologies and advancements in Science & Technology.",
-    thrust: "Faculty development, emerging technologies, skill enhancement and research/teaching capacity building across relevant RUAS faculties.",
-    funding: "₹3 lakh per 4-day workshop.",
-    deadline: "2026-09-25",
-    link: "https://vgstdst.karnataka.gov.in/uploads/Call%20for%20Proposals%202026-27_1788515985.pdf"
+    id: "icmr-fiw", category: "national",
+    title: "ICMR – First in the World (FiW) Challenge Grants 2026", agency: "ICMR", logo: "assets/logos/icmr.png",
+    summary: "The Indian Council of Medical Research (ICMR), Government of India, invites innovative, high-risk research proposals aimed at developing biomedical breakthroughs that are genuinely new at the global level.",
+    thrust: "Novel diagnostics, vaccines, therapeutics, medical devices, biomedical technologies, digital health, and other innovative healthcare solutions.",
+    funding: "Stage-wise funding of up to ₹1 crore for Proof of Concept, ₹4 crore for Prototype Development, and ₹8 crore for Final Product/Model Development.",
+    deadline: "2026-11-30", link: "https://www.icmr.gov.in/icmrobject/uploads/Call/1790846907_call_fiw_2026.pdf"
   },
   {
-    id: "csir-emeritus",
-    category: "national",
-    title: "CSIR – Emeritus Scientist Scheme 2026",
-    agency: "CSIR",
-    logo: "assets/logos/csir.png",
-    summary: "Provides support to eminent and superannuated scientists to continue active research in Science & Engineering through a host institution with appropriate research facilities.",
-    thrust: "Animal Sciences & Biotechnology, Disaster Preparedness, Earth, Physical, Engineering, Chemical, Mathematical, Medical and Plant Sciences.",
-    funding: "₹20,000/month Scientist Allowance + annual contingency grant + technical assistance through research fellows/associates.",
-    deadline: "2026-09-30",
-    link: "https://csirhrdg.res.in/SiteContent/ManagedContent/ATContent/Advertisement_for_Seeking_Research_Proposal_under__CSIR_Emeritus_Scientist_Scheme__20260903172320444.pdf"
+    id: "anrf-aise", category: "national",
+    title: "ANRF – AI for Science and Engineering (AI-SE) Mission 2026", agency: "ANRF", logo: "assets/logos/anrf.jpeg",
+    summary: "The Anusandhan National Research Foundation (ANRF), Government of India, invites collaborative research proposals integrating Artificial Intelligence (AI) with scientific and engineering disciplines to accelerate discoveries, develop innovative technologies and address complex research challenges.",
+    thrust: "AI for Science and Science of AI; AI for Engineering and Advanced Materials; AI for Earth, Atmosphere and Ocean Sciences; and AI for Bio and Life Sciences, including AI-driven drug discovery, healthcare, robotics, semiconductor design, renewable energy and agriculture.",
+    funding: "Up to ₹30 crore for 3 years; exceptionally, funding up to ₹50 crore may be considered, subject to the call guidelines.",
+    deadline: null, upcoming: true, link: "https://anrfonline.in/ANRF/aise_anrf"
+  },
+
+  // ---------------- UG & PG STUDENTS GRANTS ----------------
+  {
+    id: "kscst-spp", category: "student",
+    title: "KSCST – Student Project Programme (SPP), 50th Series 2026–27", agency: "KSCST",
+    summary: "The Karnataka State Council for Science and Technology (KSCST), Bengaluru, invites project proposals from final-year students to support innovative, practical research addressing real-world challenges and regional development needs.",
+    thrust: "Science, Engineering and Technology, Agriculture, Environmental Sustainability, Healthcare, Rural Development, Artificial Intelligence, Renewable Energy and other themes specified in the official call.",
+    funding: "As per Guidelines",
+    deadline: "2026-11-30", link: "https://www.kscst.org.in/spp/50_series/50S_SPP_Poster_Proposal_Format_Guidelines/02_SPP_50_Series_Guidelines_for_submission_of_project_proposals.pdf"
   },
   {
-    id: "icmr-vdrl",
-    category: "national",
-    title: "ICMR – Viral Research & Diagnosis Laboratories (VRDL) 2026",
-    agency: "ICMR",
-    logo: "assets/logos/icmr.png",
-    summary: "Supports establishment/strengthening of Viral Research & Diagnosis Laboratories for viral disease diagnosis, surveillance, outbreak investigation and preparedness, and research on emerging and re-emerging viral infections.",
-    thrust: "Viral disease diagnosis & surveillance, emerging/re-emerging viral infections, outbreak preparedness, infectious disease research and strengthening of viral diagnostic capacity.",
-    funding: "Approx. ₹3.83 crore over 5 years, including ₹1.507 crore non-recurring and ₹46.4 lakh/year recurring support.",
-    deadline: "2026-09-30",
-    link: "https://www.icmr.gov.in/icmrobject/uploads/Call/1787297129_callforproposalforvrdl.pdf"
+    id: "srfp-2027", category: "student",
+    title: "Science Academies – Summer Research Fellowship Programme (SRFP) 2027", agency: "Science Academies (IASc, INSA, NASI)",
+    summary: "The Indian Academy of Sciences (IASc), Bengaluru, in collaboration with the Indian National Science Academy (INSA), New Delhi, and the National Academy of Sciences, India (NASI), Prayagraj, invites applications from eligible students and college/university teachers to undertake a two-month research project under scientists associated with the three academies.",
+    thrust: "Biological Sciences, Chemical Sciences, Physical Sciences, Mathematical Sciences, Engineering, Environmental Sciences and interdisciplinary research, depending on the available research guides and projects.",
+    funding: "Monthly fellowship to meet living expenses at the research location, along with eligible round-trip train fare.",
+    deadline: "2026-11-30", link: "https://www.ias.ac.in/public/Resources/News/SRFP2027_Announcement.pdf"
   },
   {
-    id: "dbt-tcell",
-    category: "national",
-    title: "DBT – T Cell Vaccines & Biologics Research Programme 2026",
-    agency: "DBT",
-    logo: "assets/logos/dbt.jpeg",
-    summary: "Supports research and development of T cell-based vaccines, biologics and engineered cellular therapies addressing major health challenges, including infectious diseases, cancer and autoimmune disorders.",
-    thrust: "T cell-based vaccines, biologics, engineered cellular therapies, infectious diseases, cancer and autoimmune disorders.",
-    funding: "Up to ₹15 crore per project",
-    deadline: "2026-09-25",
-    link: "https://dbt.gov.in/storage/media/kD4sCpy1loK6v13u8bhOdCHaJDCxTn0B1yzs1qRY.pdf"
+    id: "indiaai-ugpg", category: "student",
+    title: "IndiaAI – Fellowship for Undergraduate (UG) and Postgraduate (PG) Students 2026–27", agency: "IndiaAI, MeitY",
+    summary: "IndiaAI, under the Ministry of Electronics and Information Technology (MeitY), GOI, invites eligible UG and PG students to undertake research projects in Artificial Intelligence (AI) and related fields. The fellowship supports innovative student research and practical AI applications across academic disciplines.",
+    thrust: "Artificial Intelligence, Machine Learning, Deep Learning, Data Science, Natural Language Processing, Computer Vision, Robotics, AI in Healthcare, Agriculture, Engineering, Business and other AI-related interdisciplinary applications.",
+    funding: "UG students: up to ₹1 lakh for the eligible project; PG students: up to ₹2 lakh for the eligible programme; additional support of up to ₹1 lakh for eligible international AI conference travel and accommodation, subject to scheme guidelines.",
+    deadline: "2026-11-30", link: "https://fellowship.indiaai.gov.in/formats/Updated_Guidelines_IndiaAI_Fellowship_010725.pdf"
+  },
+
+  // ---------------- FELLOWSHIP & AWARDS ----------------
+  {
+    id: "anrf-ramanujan", category: "fellowship",
+    title: "ANRF – Ramanujan Fellowship 2026", agency: "ANRF", logo: "assets/logos/anrf.jpeg",
+    summary: "The Anusandhan National Research Foundation (ANRF), Government of India, invites nominations from outstanding Indian and Indian-origin scientists and engineers working abroad who wish to return to India and pursue advanced research at eligible Indian academic and research institutions.",
+    thrust: "All areas of Science, Engineering and Technology, including interdisciplinary and emerging research areas.",
+    funding: "₹1,35,000 per month as fellowship, ₹7 lakh per annum as research grant, and ₹60,000 per annum as institutional overheads, for a maximum period of 5 years.",
+    deadline: "2026-12-31", link: "https://anrfonline.in/ANRF/Ramanujan_fellowship"
   },
   {
-    id: "dst-ncstc",
-    category: "national",
-    title: "DST–NCSTC – Call for Proposals on Science Communication & Popularization 2026",
-    agency: "DST",
-    logo: "assets/logos/dst.png",
-    summary: "Supports projects that promote public understanding of science, STEM engagement, scientific literacy and innovative science communication.",
-    thrust: "Samvaad (STEM student engagement), Science & Technology Communication Tools, Bhartiya Ganita Literacy, Children Science Congress, SciCom for Sustainable Future, Hands-on Science Programme, AI, robotics, quantum computing and semiconductors.",
-    funding: "As per approved project budget",
-    deadline: "2026-09-30",
-    link: "https://onlinedst.gov.in/Projectproposalformat.aspx?Id=2344"
+    id: "syngene-ecra", category: "fellowship",
+    title: "Syngene International – Early Career Research Awards 2026–27", agency: "Syngene International",
+    summary: "Syngene International Limited invites applications from early-career faculty members in Life Sciences at Indian universities and research institutions to support independent, innovative, high-risk, high-reward research addressing healthcare challenges.",
+    thrust: "Drug discovery and development, translational research, novel technologies, biomarkers, assays, disease models, and Artificial Intelligence (AI) and Machine Learning (ML) applications in healthcare research.",
+    funding: "Research grant of ₹50 lakh per award for up to 4 years, as per the official guidelines.",
+    deadline: "2026-11-30", link: "https://www.syngeneintl.com/about-us/corporate-social-responsibility/syngene-early-career-research-awards-2026/"
   },
   {
-    id: "idex-open",
-    category: "national",
-    title: "iDEX – Open Challenge 2026",
-    agency: "iDEX",
-    logo: "assets/logos/idex.jpeg",
-    summary: "Supports innovative defence and aerospace technologies developed by startups, innovators and MSMEs.",
-    thrust: "AI, robotics, autonomous systems, advanced materials, intelligent machines, predictive technologies, rocket engines and other defence technologies.",
-    funding: "Up to ₹1.5 Crore",
-    deadline: "2026-09-30",
-    link: "https://idex.gov.in/disc-category/18"
+    id: "indiaai-phd", category: "fellowship",
+    title: "IndiaAI – Research Fellowship for PhD Scholars 2026–27", agency: "IndiaAI, MeitY",
+    summary: "IndiaAI, under the Ministry of Electronics and Information Technology (MeitY), GOI, invites applications to support eligible full-time PhD scholars conducting research in Artificial Intelligence (AI) and related fields, strengthening India's AI research and innovation ecosystem.",
+    thrust: "Artificial Intelligence, Machine Learning, Deep Learning, Natural Language Processing, Computer Vision, Data Science, Robotics and other AI-related research areas.",
+    funding: "Monthly fellowship of ₹70,000 in Years 1–2, ₹75,000 in Year 3, and ₹80,000 in Years 4–5; annual research grant of ₹2 lakh; and one-time international conference travel/accommodation support of up to ₹1 lakh, subject to scheme guidelines.",
+    deadline: "2026-11-30", link: "https://fellowship.indiaai.gov.in/formats/Updated_Guidelines_IndiaAI_Fellowship_010725.pdf"
   },
   {
-    id: "india-eu-ttc",
-    category: "national",
-    title: "India–EU TTC – Recycling of EV Batteries 2026",
-    agency: "Ministry of Heavy Industries, Govt. of India",
-    logo: "assets/logos/ministry-heavy-industries.jpeg",
-    summary: "Supports India–EU collaborative projects on advanced EV battery recycling and circular economy technologies.",
-    thrust: "EV battery recycling, material recovery, safe collection systems, digitalization, critical raw materials and pilot-scale recycling technologies.",
-    funding: "Up to ₹65 crore per project from India",
-    deadline: "2026-10-15",
-    link: "https://www.indiascienceandtechnology.gov.in/announcementsopportunity/call-proposals-india-eu-ttc-call-recycling-ev-batteries"
+    id: "ayush-phd", category: "fellowship",
+    title: "Ministry of AYUSH – AYUSH PhD Fellowship Scheme 2026", agency: "Ministry of AYUSH, Govt. of India",
+    summary: "The Ministry of AYUSH, Government of India, through the Central Council for Research in Ayurvedic Sciences (CCRAS) and the Central Council for Research in Yoga & Naturopathy (CCRYN), invites eligible NET-qualified scholars to pursue PhD research in AYUSH-related disciplines and allied life sciences.",
+    thrust: "Ayurveda, Yoga and Naturopathy, medicinal plants, pharmacognosy, phytochemistry, clinical research, drug development, therapeutic validation and interdisciplinary biomedical research.",
+    funding: "Junior Research Fellow (JRF): ₹37,000 per month + HRA; Senior Research Fellow (SRF): ₹42,000 per month + HRA; additional grants: ₹20,000 annual contingency grant and a one-time research grant of ₹1,00,000.",
+    deadline: "2026-12-09", link: "https://phd.ccras.org.in/"
   },
   {
-    id: "anrf-pm-professorship",
-    category: "national",
-    title: "ANRF – Prime Minister Professorship",
-    agency: "ANRF",
-    logo: "assets/logos/anrf.jpeg",
-    summary: "Supports distinguished senior scientists, researchers and industry professionals to provide research leadership and mentorship in Science & Technology, including Engineering, Agriculture, Medicine and S&T-linked Social Sciences.",
-    thrust: "All areas of Science & Technology.",
-    funding: "₹30 lakh/year fellowship + ₹24 lakh/year research grant + ₹1 lakh/year overheads for up to 5 years.",
-    deadline: "2026-10-15",
-    link: "https://www.anrfonline.in/ANRF/PMProfessorship_anrf?HomePage=New&utm"
+    id: "humboldt", category: "fellowship",
+    title: "Alexander von Humboldt Foundation – Humboldt Research Fellowship 2027", agency: "Alexander von Humboldt Foundation",
+    summary: "The Alexander von Humboldt Foundation, Germany, invites applications from highly qualified international postdoctoral and experienced researchers to conduct independent research in collaboration with a host institution in Germany. The fellowship is open to researchers across all academic disciplines.",
+    thrust: "All academic disciplines, including Life Sciences, Medicine, Engineering, Natural Sciences, Mathematics, Physics, Chemistry, Environmental Sciences, Social Sciences and Humanities.",
+    funding: "Postdoctoral researchers: €3,000 per month for 6–24 months; experienced researchers: €3,600 per month for 6–18 months. Additional benefits: research-cost support for the host institution, travel expenses, health insurance subsidies, family allowances and German-language courses, subject to eligibility and programme rules.",
+    deadline: "2026-12-09", link: "https://www.humboldt-foundation.de/en/apply/sponsorship-programmes/humboldt-research-fellowship"
   },
   {
-    id: "steel-rd",
-    category: "national",
-    title: "Ministry of Steel – R&D Support for Iron & Steel Sector",
-    agency: "Ministry of Steel, Govt. of India",
-    logo: "assets/logos/ministry-steel.png",
-    summary: "Supports academic institutions, research labs and steel companies to develop practical technologies and solutions for the iron & steel industry.",
-    thrust: "Raw-material beneficiation, steel quality, waste utilization, energy efficiency, low-carbon technologies, GHG reduction, waste-heat recovery and innovative steel technologies.",
-    funding: "Up to ₹5–10 crore",
-    deadline: null,
-    noFixedDeadline: true,
-    link: "https://steel.gov.in/sites/default/files/2025-05/Scheme%20Guidelines%20%28Annexure-1%29%20Revised%20-%20May%202025.pdf"
+    id: "cob-travel", category: "fellowship",
+    title: "The Company of Biologists – Travelling Fellowships 2026", agency: "The Company of Biologists",
+    summary: "The Company of Biologists offers travelling fellowships to graduate students and postdoctoral researchers to undertake collaborative research visits to other laboratories, develop new research skills and establish scientific collaborations.",
+    thrust: "Developmental Biology, Cell Biology, Experimental Biology and Disease Models, aligned with the participating journals.",
+    funding: "Up to £3,000 to cover travel, accommodation, subsistence, visa fees and laboratory bench fees, as applicable.",
+    deadline: null, noFixedDeadline: true, link: "https://www.biologists.com/travelling-fellowships/"
   },
 
   // ---------------- INTERNATIONAL RESEARCH GRANTS ----------------
   {
-    id: "cefipra",
-    category: "international",
-    title: "CEFIPRA – Industry-Academia R&D Programme 2026",
-    agency: "CEFIPRA",
-    logo: "assets/logos/cefipra.png",
-    summary: "Supports Indo-French collaborative research between academic institutions and industry.",
-    thrust: "AI & ML, healthcare, clean energy, smart mobility, agriculture, sustainable development and waste management.",
-    funding: "Up to ₹2.44 Crores per project",
-    deadline: "2026-09-30",
-    link: "https://www.cefipra.org/PgmIA.aspx?p=IR"
-  },
-  {
-    id: "biocodex-gut",
-    category: "international",
-    title: "Biocodex Microbiota Foundation – Gut Microbiota International Research Grant 2027",
-    agency: "Biocodex Microbiota Foundation",
-    logo: "assets/logos/biocodex.jpeg",
+    id: "biocodex-gut", category: "international",
+    title: "Biocodex Microbiota Foundation – Gut Microbiota International Research Grant 2027", agency: "Biocodex Microbiota Foundation", logo: "assets/logos/biocodex.jpeg",
     summary: "Supports international research on gut microbiota and human disease, with the 2027 theme focusing on diet–microbiome interactions and immune function.",
     thrust: "Gut microbiome, microbiome analysis, immunophenotyping, diet–microbiome interactions and human disease; experimental validation is expected.",
     funding: "Up to ₹2.21 Crores per project",
-    deadline: "2026-11-30",
-    link: "https://www.biocodexmicrobiotafoundation.com/international-research-grant/international-call-projects"
+    deadline: "2026-11-13", link: "https://www.biocodexmicrobiotafoundation.com/international-research-grant/international-call-projects"
   },
   {
-    id: "biocodex-womens-health",
-    category: "international",
-    title: "Biocodex Microbiota Foundation – Microbiota & Women's Health International Grant 2027",
-    agency: "Biocodex Microbiota Foundation",
-    logo: "assets/logos/biocodex.jpeg",
+    id: "biocodex-womens-health", category: "international",
+    title: "Biocodex Microbiota Foundation – Microbiota & Women's Health International Grant 2027", agency: "Biocodex Microbiota Foundation", logo: "assets/logos/biocodex.jpeg",
     summary: "Supports international research on microbiota and women's health, with the 2027 theme focusing on male–female genital microbiome interactions and vaginal dysbiosis.",
     thrust: "Genital microbiome, vaginal dysbiosis/bacterial vaginosis, microbial transmission, penile microbiome, microbiome-based interventions and treatment recurrence.",
     funding: "Up to ₹2.21 Crores per project",
-    deadline: "2027-01-15",
-    link: "https://www.biocodexmicrobiotafoundation.com/international-research-grant/international-call-projects"
-  },
-
-  // ---------------- FELLOWSHIPS ----------------
-  {
-    id: "icgeb-smart",
-    category: "fellowship",
-    title: "ICGEB – Arturo Falaschi SMART Fellowship 2026",
-    agency: "ICGEB",
-    logo: "assets/logos/icgeb.png",
-    summary: "Supports research training and mobility for young scientists in biotechnology and life sciences at ICGEB laboratories.",
-    thrust: "Biotechnology, molecular biology, life sciences, infectious diseases, cancer, agriculture and related fields.",
-    funding: "As per ICGEB provisions.",
-    deadline: "2026-09-30",
-    link: "https://www.icgeb.org/fellowships/arturo-falaschi-smart-fellowships-september-2026/"
+    deadline: "2027-01-15", link: "https://www.biocodexmicrobiotafoundation.com/international-research-grant/international-call-projects"
   },
   {
-    id: "icgeb-postdoc",
-    category: "fellowship",
-    title: "ICGEB – Arturo Falaschi Postdoctoral Fellowship",
-    agency: "ICGEB",
-    logo: "assets/logos/icgeb.png",
-    summary: "Supports postdoctoral research in Life Sciences at ICGEB laboratories in India.",
-    thrust: "Life Sciences, biotechnology, health, agriculture and related research areas.",
-    funding: "As per ICGEB provisions.",
-    deadline: "2026-09-30",
-    link: "https://www.icgeb.org/fellowships/arturo-falaschi-postdoctoral-fellowships-september-2026/"
+    id: "amazon-ara", category: "international",
+    title: "Amazon – Amazon Research Awards (ARA), Fall 2026", agency: "Amazon Science",
+    summary: "Amazon Research Awards invites university faculty and eligible nonprofit researchers worldwide to submit innovative research proposals addressing scientific and technological challenges.",
+    thrust: "Agentic AI, AI for Information Security, Amazon Security, Automated Reasoning, AWS Cryptography, AI kernel and framework development using Trainium, Multilingual and Contextual AI Evaluation, On-Device Multimodal Perception, and Synthetic Data Generation for Multimodal Perception.",
+    funding: "Unrestricted research funding and AWS promotional credits, with award amounts depending on the specific research area and call guidelines.",
+    deadline: "2026-11-04", link: "https://www.amazon.science/research-awards/latest-news/amazon-research-awards-opens-fall-2026-call-for-proposals"
   },
   {
-    id: "inqua",
-    category: "fellowship",
-    title: "INQUA Fellowship Programme 2026",
-    agency: "INQUA",
-    logo: "assets/logos/inqua.jpeg",
-    summary: "Supports early-career researchers to gain international research experience in Quaternary Science.",
-    thrust: "Climate change, palaeoclimate, geohazards, sediments, human evolution, environmental change and Quaternary research.",
-    funding: "Up to ₹16.62 Lakhs for travel, accommodation and living expenses.",
-    deadline: "2026-09-30",
-    link: "https://www.inqua.org/projects-fellowships/fellowships"
-  },
-  {
-    id: "aicte-apdf",
-    category: "fellowship",
-    title: "AICTE – Post-Doctoral Fellowship (APDF) 2025–26",
-    agency: "AICTE",
-    logo: "assets/logos/aicte.png",
-    summary: "Supports full-time post-doctoral research in AICTE-approved Institutes/Universities.",
-    thrust: "Engineering, Management, Design, Applied Sciences, Planning, Computer Applications, Interdisciplinary areas and related fields.",
-    funding: "As per AICTE APDF guidelines.",
-    deadline: "2026-10-20",
-    link: "https://aicte.gov.in/sites/default/files/Notification%202025-26%20%281%29.pdf"
+    id: "wcrf-inspire", category: "international",
+    title: "World Cancer Research Fund International (WCRF) – INSPIRE Research Challenge", agency: "WCRF International",
+    summary: "The INSPIRE Research Challenge supports early-career researchers worldwide in conducting innovative cancer research to improve cancer prevention, treatment and survivorship.",
+    thrust: "Integrative Oncology, Lifestyle and Weight-Loss Medications, Early-Onset Cancers, Early-Life Exposures and Future Cancer Risk, Ingested Contaminants in Food and Drinking Water, Ultra-Processed Foods and Cancer Risk.",
+    funding: "As per the Guidelines",
+    deadline: "2026-11-04", link: "https://www.wcrf.org/research-policy/our-grant-programmes/inspire-research-challenge/"
   }
 ];
 
@@ -326,13 +235,21 @@ const ROLLING_CALLS = {
   ]
 };
 
-/* September 2026 deadline map for the calendar widget: day -> list of grant ids */
-const CALENDAR_2026_09 = {
-  startWeekday: 2, // 0=Sun ... Tuesday 1 Sep 2026
-  daysInMonth: 30,
-  deadlineDays: {
-    23: ["dbt-biocare"],
-    25: ["vgst-gre", "vgst-kfist", "vgst-ecra", "vgst-aorp", "vgst-fdp", "dbt-tcell"],
-    30: ["csir-emeritus", "icmr-vdrl", "dst-ncstc", "idex-open", "cefipra", "icgeb-smart", "icgeb-postdoc", "inqua"]
-  }
-};
+/* November 2026 deadline map for the calendar widget: day -> list of grant ids.
+   Built automatically from GRANTS so it never drifts from the data. */
+const CALENDAR = (function(){
+  const year = 2026, month = 10; // November (0-indexed)
+  const deadlineDays = {};
+  GRANTS.forEach(g=>{
+    if(!g.deadline) return;
+    const [y,m,d] = g.deadline.split("-").map(Number);
+    if(y===year && m-1===month){ (deadlineDays[d] = deadlineDays[d] || []).push(g.id); }
+  });
+  return {
+    year, month,
+    label: "November 2026",
+    startWeekday: new Date(year, month, 1).getDay(), // Sunday 1 Nov 2026
+    daysInMonth: new Date(year, month+1, 0).getDate(),
+    deadlineDays
+  };
+})();

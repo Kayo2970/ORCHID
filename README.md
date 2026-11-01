@@ -1,6 +1,6 @@
 # ORCHID — Grants & Fellowships Newsletter
 
-A dynamic, searchable website version of the **ORCHID Newsletter (Issue No. 27, September 2026)**,
+A dynamic, searchable website version of the **ORCHID Newsletter (Issue No. 29, November 2026)**,
 published by the Office of Research & Innovation (ORI), M.S. Ramaiah University of Applied Sciences.
 Built from the original newsletter PPTX supplied by ORI, with all grant details and hyperlinks
 carried over.
@@ -12,8 +12,8 @@ Built as a dependency-free static site (vanilla HTML/CSS/JS) so it deploys insta
 
 - Animated, gradient hero built from the newsletter's own brand palette
 - Live countdown timers to every grant deadline, computed client-side
-- Interactive September 2026 calendar highlighting deadline days
-- Searchable, filterable grant grid (National / International / Fellowships)
+- Interactive November 2026 calendar highlighting deadline days
+- Searchable, filterable grant grid (National / UG & PG / Fellowships / International)
 - Detail modal for every grant with thrust areas, funding and a direct link to the official call
   (all hyperlinks extracted from the original PPTX and preserved)
 - "Schemes Open Throughout the Year" rolling-call directory with tabbed National/International views
