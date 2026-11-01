@@ -58,7 +58,7 @@
       <a href="#international" data-nav>International</a>
       <a href="#rolling" data-nav>Rolling Calls</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -116,7 +116,7 @@
             </div>
           </div>
 
-          <a href="#desk" class="orbit-node" style="--angle:0deg;">
+          <a href="#desk" class="orbit-node" style="--angle:0.0deg;">
             <span class="orbit-node-static">
               <span class="orbit-node-inner">
               <span class="orbit-node-icon" style="--node-a:var(--orchid-orange); --node-b:var(--orchid-coral);">
@@ -127,7 +127,7 @@
             </span>
           </a>
 
-          <a href="#calendar" class="orbit-node" style="--angle:60deg;">
+          <a href="#calendar" class="orbit-node" style="--angle:51.43deg;">
             <span class="orbit-node-static">
               <span class="orbit-node-inner">
               <span class="orbit-node-icon" style="--node-a:var(--orchid-magenta); --node-b:var(--orchid-coral);">
@@ -138,7 +138,7 @@
             </span>
           </a>
 
-          <a href="#national" class="orbit-node" style="--angle:120deg;">
+          <a href="#national" class="orbit-node" style="--angle:102.86deg;">
             <span class="orbit-node-static">
               <span class="orbit-node-inner">
               <span class="orbit-node-icon" style="--node-a:var(--orchid-violet); --node-b:var(--orchid-magenta);">
@@ -149,18 +149,18 @@
             </span>
           </a>
 
-          <a href="#international" class="orbit-node" style="--angle:180deg;">
+          <a href="#students" class="orbit-node" style="--angle:154.29deg;">
             <span class="orbit-node-static">
               <span class="orbit-node-inner">
-              <span class="orbit-node-icon" style="--node-a:var(--orchid-indigo); --node-b:var(--orchid-violet);">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.3 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.3-3.6-8.5S9.6 5.8 12 3.5z" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span class="orbit-node-icon" style="--node-a:var(--orchid-coral); --node-b:var(--orchid-magenta);">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.5 9.5 12 5l9.5 4.5L12 14 2.5 9.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6.5 11.8v4.2c0 1.2 2.5 2.5 5.5 2.5s5.5-1.3 5.5-2.5v-4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               </span>
-              <span class="orbit-node-label">International</span>
+              <span class="orbit-node-label">UG &amp; PG</span>
             </span>
             </span>
           </a>
 
-          <a href="#fellowships" class="orbit-node" style="--angle:240deg;">
+          <a href="#fellowships" class="orbit-node" style="--angle:205.71deg;">
             <span class="orbit-node-static">
               <span class="orbit-node-inner">
               <span class="orbit-node-icon" style="--node-a:var(--orchid-coral); --node-b:var(--orchid-magenta);">
@@ -171,7 +171,18 @@
             </span>
           </a>
 
-          <a href="#rolling" class="orbit-node" style="--angle:300deg;">
+          <a href="#international" class="orbit-node" style="--angle:257.14deg;">
+            <span class="orbit-node-static">
+              <span class="orbit-node-inner">
+              <span class="orbit-node-icon" style="--node-a:var(--orchid-indigo); --node-b:var(--orchid-violet);">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.3 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.3-3.6-8.5S9.6 5.8 12 3.5z" stroke="currentColor" stroke-width="1.8"/></svg>
+              </span>
+              <span class="orbit-node-label">International</span>
+            </span>
+            </span>
+          </a>
+
+          <a href="#rolling" class="orbit-node" style="--angle:308.57deg;">
             <span class="orbit-node-static">
               <span class="orbit-node-inner">
               <span class="orbit-node-icon" style="--node-a:var(--orchid-orange); --node-b:var(--orchid-violet);">
@@ -325,9 +336,9 @@
         <p class="section-lede">No fixed deadline — accepted year-round. Reach out to ORI any time to discuss these.</p>
       </div>
 
-      <div class="rolling-tabs reveal">
-        <button class="rolling-tab active" data-rolling="national">National Research Grants &amp; Fellowships</button>
-        <button class="rolling-tab" data-rolling="international">International &amp; Collaborative Research Grants</button>
+      <div class="rolling-tabs reveal" role="tablist">
+        <button class="rolling-tab active" role="tab" aria-selected="true" data-rolling="national">National Research Grants &amp; Fellowships</button>
+        <button class="rolling-tab" role="tab" aria-selected="false" data-rolling="international">International &amp; Collaborative Research Grants</button>
       </div>
 
       <div class="rolling-list" id="rollingList"></div>

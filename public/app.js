@@ -149,44 +149,90 @@
     grid.innerHTML = html;
 
     $$(".cal-cell.has-deadline", grid).forEach(cell=>{
-      cell.addEventListener("click", ()=>{
+      cell.setAttribute("tabindex","0");
+      cell.setAttribute("role","button");
+      const act = ()=>{
         const day = cell.getAttribute("data-day");
         const ids = cal.deadlineDays[day];
-        if(ids && ids.length) openModal(GRANTS.find(g=>g.id===ids[0]));
-      });
+        if(!ids || !ids.length) return;
+        if(ids.length===1){ openModal(GRANTS.find(g=>g.id===ids[0])); return; }
+        $$(".cal-cell.selected", grid).forEach(c=>c.classList.remove("selected"));
+        cell.classList.add("selected");
+        highlightDeadlines(ids, `${day} ${cal.label.split(" ")[0]}`);
+      };
+      cell.addEventListener("click", act);
+      cell.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); act(); } });
     });
   }
 
   function renderDeadlineList(){
-    const upcoming = GRANTS
+    const dated = GRANTS
       .filter(g=>g.deadline)
-      .slice()
       .sort((a,b)=> new Date(a.deadline) - new Date(b.deadline));
+    const undated = GRANTS.filter(g=>!g.deadline);
+    const upcoming = dated.concat(undated);
 
     $("#deadlineList").innerHTML = upcoming.map(g=>{
-      const dl = daysLeft(g.deadline);
-      const cls = urgencyClass(g.deadline,false);
-      const passed = dl < 0;
+      const hasDate = !!g.deadline;
+      const dl = hasDate ? daysLeft(g.deadline) : null;
+      const cls = hasDate ? urgencyClass(g.deadline,false) : "open";
+      const passed = hasDate && dl < 0;
+      const num = !hasDate ? (g.upcoming ? "Soon" : "Open") : (passed ? "—" : dl);
+      const unit = !hasDate ? (g.upcoming ? "upcoming" : "all year") : (passed ? "closed" : (dl===1 ? "day" : "days"));
+      const meta = hasDate ? fmtDate(g.deadline) : (g.upcoming ? "Upcoming call" : "Open throughout the year");
       return `
-        <li class="deadline-item" data-id="${g.id}">
-          <div class="dl-countdown ${cls}">
-            <div class="num">${passed ? "—" : dl}</div>
-            <div class="unit">${passed ? "closed" : (dl===1 ? "day" : "days")}</div>
+        <li class="deadline-item" data-id="${g.id}" tabindex="0" role="button">
+          <div class="dl-countdown ${cls} ${hasDate?"":"pending"}">
+            <div class="num">${num}</div>
+            <div class="unit">${unit}</div>
           </div>
           <div class="dl-main">
-            <div class="dl-title">${g.title}</div>
-            <div class="dl-meta">${fmtDate(g.deadline)} &middot; ${g.agency}</div>
+            <div class="dl-title" title="${g.title.replace(/"/g,"&quot;")}">${g.title}</div>
+            <div class="dl-meta">${meta} &middot; ${g.agency}</div>
           </div>
           <span class="dl-badge badge-${g.category}">${CATEGORY_LABEL[g.category]}</span>
         </li>`;
     }).join("");
 
     $$(".deadline-item", $("#deadlineList")).forEach(item=>{
-      item.addEventListener("click", ()=>{
+      const open = ()=>{
         const g = GRANTS.find(x=>x.id===item.getAttribute("data-id"));
         if(g) openModal(g);
-      });
+      };
+      item.addEventListener("click", open);
+      item.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); open(); } });
     });
+  }
+
+  function highlightDeadlines(ids, label){
+    const list = $("#deadlineList");
+    clearHighlight(true);
+    const note = document.createElement("div");
+    note.className = "deadline-filter-note";
+    note.id = "deadlineNote";
+    note.innerHTML = `<span>${ids.length} deadlines on ${label}</span><button type="button">Show all</button>`;
+    list.parentNode.insertBefore(note, list);
+    note.querySelector("button").addEventListener("click", ()=> clearHighlight(false));
+    let first = null;
+    $$(".deadline-item", list).forEach(it=>{
+      const hit = ids.includes(it.getAttribute("data-id"));
+      it.classList.toggle("is-highlighted", hit);
+      if(hit){
+        if(!first) first = it;
+        list.insertBefore(it, list.querySelector(".deadline-item:not(.is-highlighted)") || null);
+      }
+    });
+    list.scrollTop = 0;
+    if(first && window.matchMedia("(max-width:900px)").matches){
+      list.scrollIntoView({behavior:"smooth", block:"center"});
+    }
+  }
+  function clearHighlight(keepOrder){
+    const note = $("#deadlineNote");
+    if(note) note.remove();
+    $$(".cal-cell.selected").forEach(c=>c.classList.remove("selected"));
+    if(keepOrder) { $$(".deadline-item.is-highlighted").forEach(i=>i.classList.remove("is-highlighted")); return; }
+    renderDeadlineList();
   }
 
   /* ---------------- GRANT CARDS ---------------- */
@@ -232,7 +278,7 @@
         if(g) openModal(g);
       };
       card.addEventListener("click", open);
-      card.addEventListener("keydown", e=>{ if(e.key==="Enter") open(); });
+      card.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); open(); } });
     });
   }
 
@@ -280,15 +326,23 @@
       </div>
       <div class="modal-footer">
         <span class="deadline-chip ${cls}">${deadlineLabel}</span>
-        <a href="${g.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit Official Call →</a>
+        ${g.link ? `<a href="${g.link}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit Official Call →</a>` : ""}
       </div>
     `;
+    lastFocus = document.activeElement;
+    $("#modalCard").setAttribute("aria-labelledby","modalTitleText");
+    const t = $(".modal-title", $("#modalContent")); if(t) t.id = "modalTitleText";
     $("#modalOverlay").classList.add("open");
     document.body.style.overflow = "hidden";
+    $("#modalClose").focus();
   }
+  let lastFocus = null;
   function closeModal(){
-    $("#modalOverlay").classList.remove("open");
+    const ov = $("#modalOverlay");
+    if(!ov.classList.contains("open")) return;
+    ov.classList.remove("open");
     document.body.style.overflow = "";
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
   /* ---------------- ROLLING CALLS ---------------- */
@@ -327,7 +381,23 @@
       const anyVisible = $$(".grant-card", el).some(c=>c.style.display!=="none");
       section.style.display = (activeFilter==="all" || activeFilter===cat) ? "" : "none";
       if(activeFilter==="all" && q && !anyVisible){ section.style.display="none"; }
+      let empty = $(".section-empty", el);
+      if(!anyVisible && activeFilter===cat){
+        if(!empty){ empty = document.createElement("div"); empty.className="section-empty"; el.appendChild(empty); }
+        empty.textContent = "No grants in this section match your search.";
+      } else if(empty){ empty.remove(); }
     });
+
+    let globalEmpty = $("#globalEmpty");
+    if(visible===0 && activeFilter==="all"){
+      if(!globalEmpty){
+        globalEmpty = document.createElement("div");
+        globalEmpty.id = "globalEmpty"; globalEmpty.className = "global-empty wrap";
+        globalEmpty.innerHTML = `<h3>No grants found</h3><p>Try a different keyword, or browse everything.</p><button type="button" class="btn btn-primary" id="resetSearch">Clear search</button>`;
+        $("#toolbarSection").after(globalEmpty);
+        $("#resetSearch").addEventListener("click", ()=> $("#clearSearch").click());
+      }
+    } else if(globalEmpty){ globalEmpty.remove(); }
 
     $("#resultsCount").textContent = q || activeFilter!=="all"
       ? `${visible} grant${visible===1?"":"s"} found`
@@ -366,8 +436,8 @@
   function initRollingTabs(){
     $$(".rolling-tab").forEach(tab=>{
       tab.addEventListener("click", ()=>{
-        $$(".rolling-tab").forEach(t=>t.classList.remove("active"));
-        tab.classList.add("active");
+        $$(".rolling-tab").forEach(t=>{ t.classList.remove("active"); t.setAttribute("aria-selected","false"); });
+        tab.classList.add("active"); tab.setAttribute("aria-selected","true");
         renderRolling(tab.getAttribute("data-rolling"));
       });
     });
